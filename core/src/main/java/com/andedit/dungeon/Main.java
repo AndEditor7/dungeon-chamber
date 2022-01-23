@@ -1,34 +1,65 @@
 package com.andedit.dungeon;
 
-import com.badlogic.gdx.ApplicationAdapter;
+import com.andedit.dungeon.graphic.FastBatch;
+import com.andedit.dungeon.graphic.QuadIndexBuffer;
+import com.andedit.dungeon.handle.EscKey;
+import com.andedit.dungeon.handle.Inputs;
+import com.andedit.dungeon.util.Util;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
-public class Main extends ApplicationAdapter {
-	private SpriteBatch batch;
-	private Texture image;
+public class Main extends Base {
+	public static final Main main = new Main();
+	
+	public FastBatch batch;
+	public AssetManager asset;
+	public TheMenu menu;
 
 	@Override
 	public void create() {
-		batch = new SpriteBatch();
-		image = new Texture("libgdx.png");
+		QuadIndexBuffer.init();
+		stage = new Stage(view = new ScreenViewport(), batch = new FastBatch());
+		Gdx.input.setInputProcessor(new InputMultiplexer(new EscKey(this::back), stage, inputs, Inputs.input));
+		Assets.load(asset = new AssetManager(new InternalFileHandleResolver(), false));
+		Gdx.gl.glClearColor(0.15f, 0.15f, 0.2f, 1f);
+		Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
 	}
+	
+	private boolean exit;
 
 	@Override
 	public void render() {
-		Gdx.gl.glClearColor(0.15f, 0.15f, 0.2f, 1f);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(image, 140, 210);
-		batch.end();
+		if (exit) {
+			super.render();
+			return;
+		}
+		
+		if (asset.update(10)) {
+			exit = true;
+			Assets.get(asset);
+			Inputs.clear();
+			Statics.init();
+			setScreen(menu = new TheMenu());
+		}
+		
+		// loading screen
+		
+		Util.glClear();
 	}
 
 	@Override
 	public void dispose() {
+		super.dispose();
+		stage.dispose();
 		batch.dispose();
-		image.dispose();
+		asset.dispose();
+		Statics.dispose();
+		QuadIndexBuffer.dispose();
 	}
 }
