@@ -1,0 +1,64 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels/test.tmx",
+    "expandedProjectPaths": [
+        "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels",
+        "."
+    ],
+    "fileStates": {
+        "C:/Users/Owner/Desktop/Java/Helpful/Pacman_libGdx-master/core/assets/map/map.tmx": {
+            "scale": 4,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 168,
+                "y": 238
+            }
+        },
+        "C:/Users/Owner/Desktop/untitled.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 341,
+                "y": 29
+            }
+        },
+        "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels/test.tmx": {
+            "scale": 5.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 262.3636363636364,
+                "y": 504.909090909091
+            }
+        },
+        "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels/tiles.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 5.5
+        }
+    },
+    "last.imagePath": "C:/Users/Owner/Documents/GitHub/dungeon-chamber/level",
+    "map.fixedSize": true,
+    "map.height": 80,
+    "map.lastUsedFormat": "tmx",
+    "map.orientation": null,
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 80,
+    "openFiles": [
+        "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels/test.tmx",
+        "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels/tiles.tsx"
+    ],
+    "project": "dungeon_chamber.tiled-project",
+    "property.type": "color",
+    "recentFiles": [
+        "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels/tiles.tsx",
+        "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels/test.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}

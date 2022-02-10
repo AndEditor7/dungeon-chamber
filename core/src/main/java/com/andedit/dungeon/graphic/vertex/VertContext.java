@@ -41,11 +41,11 @@ public interface VertContext
 		}
 	}
 	
-	static VertContext newVert(ShaderProgram shader, VertexAttribute... attributeArray) {
-		return newVert(shader, new VertexAttributes(attributeArray));
+	static VertContext of(ShaderProgram shader, VertexAttribute... attributeArray) {
+		return of(shader, new VertexAttributes(attributeArray));
 	}
 	
-	static VertContext newVert(ShaderProgram shader, VertexAttributes attributes) {
+	static VertContext of(ShaderProgram shader, VertexAttributes attributes) {
 		return new VertContext() {
 			public ShaderProgram getShader() {
 				return shader;

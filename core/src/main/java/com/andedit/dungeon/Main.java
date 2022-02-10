@@ -1,5 +1,6 @@
 package com.andedit.dungeon;
 
+import com.andedit.dungeon.graphic.FBO;
 import com.andedit.dungeon.graphic.FastBatch;
 import com.andedit.dungeon.graphic.QuadIndexBuffer;
 import com.andedit.dungeon.handle.EscKey;
@@ -20,10 +21,12 @@ public class Main extends Base {
 	public FastBatch batch;
 	public AssetManager asset;
 	public TheMenu menu;
+	public FBO frame;
 
 	@Override
 	public void create() {
 		QuadIndexBuffer.init();
+		frame = new FBO();
 		stage = new Stage(view = new ScreenViewport(), batch = new FastBatch());
 		Gdx.input.setInputProcessor(new InputMultiplexer(new EscKey(this::back), stage, inputs, Inputs.input));
 		Assets.load(asset = new AssetManager(new InternalFileHandleResolver(), false));
@@ -35,8 +38,13 @@ public class Main extends Base {
 
 	@Override
 	public void render() {
+		Util.glClear();
+		
 		if (exit) {
+			frame.begin();
 			super.render();
+			frame.end();
+			frame.draw();
 			return;
 		}
 		
@@ -49,8 +57,12 @@ public class Main extends Base {
 		}
 		
 		// loading screen
-		
-		Util.glClear();
+	}
+	
+	@Override
+	public void resize(int width, int height) {
+		super.resize(width, height);
+		frame.resize(guiOff, guiOff);
 	}
 
 	@Override
