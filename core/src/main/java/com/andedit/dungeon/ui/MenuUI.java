@@ -1,4 +1,4 @@
-package com.andedit.dungeon.level;
+package com.andedit.dungeon.ui;
 
 import com.andedit.dungeon.ui.util.BaseUI;
 
