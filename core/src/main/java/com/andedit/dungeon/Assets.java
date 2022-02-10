@@ -1,7 +1,7 @@
 package com.andedit.dungeon;
 
 import com.andedit.dungeon.graphic.vertex.VertContext;
-import com.badlogic.gdx.assets.AssetManager;
+import com.andedit.dungeon.ui.util.AssetManager;
 import com.badlogic.gdx.assets.loaders.BitmapFontLoader;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.ShaderProgramLoader;
@@ -22,12 +22,11 @@ public class Assets {
 		asset.setLoader(BitmapFont.class, new BitmapFontLoader(resolver));
 		asset.setLoader(ShaderProgram.class, new ShaderProgramLoader(resolver));
 		
-		asset.load("textures/tiles.png", Texture.class);
-		asset.load("shaders/default.vert", ShaderProgram.class);
+		asset.load("textures/tiles.png", Texture.class, t->TILES=t);
+		asset.load("shaders/default.vert", ShaderProgram.class, t->SHADER=t);
 	}
 	
 	public static void get(AssetManager asset) {
-		TILES = asset.get("textures/tiles.png", Texture.class);
-		SHADER = asset.get("shaders/default.vert", ShaderProgram.class);
+		asset.getAll();
 	}
 }
