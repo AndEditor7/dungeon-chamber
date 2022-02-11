@@ -3,6 +3,7 @@ package com.andedit.dungeon.util.math;
 import static java.lang.Math.min;
 import static java.lang.Math.max;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.Ray;
 import com.badlogic.gdx.utils.Pool;
@@ -17,27 +18,27 @@ public class CollisionBox {
 	public float xMin, yMin;
 	public float xMax, yMax;
 
-	public void expand(float x, float y, float z, CollisionBox out) {
-		out.set(min(xMin, xMin+x), min(yMin, yMin+z), max(xMax, xMax+x), max(yMax, yMax+z));
+	public void expand(float x, float y, CollisionBox out) {
+		out.set(min(xMin, xMin+x), min(yMin, yMin+y), max(xMax, xMax+x), max(yMax, yMax+y));
 	}
 	
-	public void grow(float x, float y, float z, CollisionBox out) {
-		out.set(xMin-x, yMin-z, xMax+x, yMax+z);
+	public void grow(float x, float y, CollisionBox out) {
+		out.set(xMin-x, yMin-y, xMax+x, yMax+y);
 	}
 	
 	public CollisionBox set(CollisionBox box) {
 		return set(box.xMin, box.yMin, box.xMax, box.yMax);
 	}
 
-	public CollisionBox move(float x, float y, float z) {
-		return set(xMin+x, yMin+z, xMax+x, yMax+z);
+	public CollisionBox move(float x, float y) {
+		return set(xMin+x, yMin+y, xMax+x, yMax+y);
 	}
 
-	public CollisionBox set(float xMin, float zMin, float xMax, float zMax) {
+	public CollisionBox set(float xMin, float yMin, float xMax, float yMax) {
 		this.xMin = xMin;
-		this.yMin = zMin;
+		this.yMin = yMin;
 		this.xMax = xMax;
-		this.yMax = zMax;
+		this.yMax = yMax;
 		return this;
 	}
 
@@ -48,7 +49,7 @@ public class CollisionBox {
 		return box.xMax<=xMin ? min(xMin-box.xMax,x) : box.xMin>=xMax ? max(xMax-box.xMin,x) : x;
 	}
 
-	public float collideZ(CollisionBox box, float y) {
+	public float collideY(CollisionBox box, float y) {
 		if (box.xMax <= xMin || box.xMin >= xMax) {
 			return y;
 		}
@@ -57,6 +58,10 @@ public class CollisionBox {
 	
 	public boolean intersects(CollisionBox box) {
 		return xMin < box.xMax && xMax > box.xMin && yMin < box.yMax && yMax > box.yMin;
+	}
+	
+	public Vector2 getCenter(Vector2 out) {
+		return out.set((xMin+xMax)*0.5f, (yMin+yMax)*0.5f);
 	}
 	
 	@Override

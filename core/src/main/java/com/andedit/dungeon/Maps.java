@@ -21,6 +21,9 @@ public class Maps {
 	}
 	
 	private static void load(AssetManager asset, String level) {
-		asset.load("levels/" + level + ".tmx", TiledMap.class, t->MAPS.put(level, t));
+		asset.load("levels/" + level + ".tmx", TiledMap.class, map -> {
+			MAPS.put(level, map);
+			map.getProperties().put("id", level);
+		});
 	}
 }
