@@ -34,6 +34,7 @@
             }
         },
         "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels/tiles.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 1,
             "scaleInEditor": 5.5
         }

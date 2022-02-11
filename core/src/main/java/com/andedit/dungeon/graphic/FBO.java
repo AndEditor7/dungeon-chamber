@@ -58,6 +58,7 @@ public class FBO implements Disposable {
 	
 	public void draw() {
 		QuadIndexBuffer.preBind();
+		view.apply(); // TODO: Remove this if this is unnecessary
 		shader.bind();
 		shader.setUniformMatrix("mat", view.getCamera().combined);
 		quad.bind();
@@ -73,5 +74,6 @@ public class FBO implements Disposable {
 	public void dispose() {
 		frame.dispose();
 		shader.dispose();
+		quad.dispose();
 	}
 }

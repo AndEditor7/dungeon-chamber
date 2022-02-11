@@ -2,7 +2,6 @@ package com.andedit.dungeon;
 
 import static com.badlogic.gdx.math.MathUtils.round;
 
-import com.andedit.dungeon.handle.Back;
 import com.andedit.dungeon.handle.Inputs;
 import com.andedit.dungeon.ui.util.StageUtils;
 import com.andedit.dungeon.util.Util;
@@ -78,16 +77,6 @@ abstract class Base extends Game {
 	@Override
 	public void setScreen(Screen screen) {
 		newScreen = screen;
-	}
-	
-	protected void back() {
-		if (screen instanceof Back) {
-			if (((Back)screen).back()) {
-				return;
-			}
-		}
-		
-		Gdx.app.exit();
 	}
 
 	@Override

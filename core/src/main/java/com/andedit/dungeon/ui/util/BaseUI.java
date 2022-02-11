@@ -12,8 +12,7 @@ public class BaseUI extends InputAdapter implements UI {
 
 	@Override
 	public void bind(Stage stage) {
-		for (Actor actor : actors)
-			stage.addActor(actor);
+		actors.forEach(stage::addActor);
 	}
 
 	@Override
