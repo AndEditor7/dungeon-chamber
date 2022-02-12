@@ -1,13 +1,13 @@
 package com.andedit.dungeon.tile;
 
-import com.badlogic.gdx.math.GridPoint2;
-
 public class Tiles {
-	private static int ID;
-	private static final Tile[] TILES = new Tile[16];
+	public static final int INIT_SIZE = 16;
 	
-	public static final Tile FLOOR = new FloorTile(new GridPoint2(2, 0));
-	public static final Tile WALL = new WallTile(new GridPoint2(0, 0));
+	private static int ID;
+	private static final Tile[] TILES = new Tile[INIT_SIZE];
+	
+	public static final Tile FLOOR = new FloorTile();
+	public static final Tile WALL = new WallTile();
 	
 	static void add(Tile tile) {
 		TILES[tile.id = ID++] = tile;

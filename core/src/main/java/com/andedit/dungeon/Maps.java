@@ -9,15 +9,19 @@ import com.badlogic.gdx.utils.ObjectMap;
 public class Maps {
 	private static final ObjectMap<String, TiledMap> MAPS = new ObjectMap<>();
 	
-	public static void load(AssetManager asset) {
+	static void load(AssetManager asset) {
 		FileHandleResolver resolver = asset.getFileHandleResolver();
 		asset.setLoader(TiledMap.class, new TmxMapLoader(resolver));
 		
 		load(asset, "test");
 	}
 	
-	public static void get(AssetManager asset) {
+	static void get(AssetManager asset) {
 		asset.getAll();
+	}
+	
+	public static TiledMap get(String id) {
+		return MAPS.get(id);
 	}
 	
 	private static void load(AssetManager asset, String level) {

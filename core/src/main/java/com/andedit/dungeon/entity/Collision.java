@@ -2,6 +2,7 @@ package com.andedit.dungeon.entity;
 
 import static com.andedit.dungeon.util.math.CollisionBox.POOL;
 
+import com.andedit.dungeon.level.Level;
 import com.andedit.dungeon.tile.Tile;
 import com.andedit.dungeon.util.TilePos;
 import com.andedit.dungeon.util.math.CollisionBox;
@@ -37,9 +38,10 @@ interface Collision<T extends Entity> {
 	}
 
 	default void blockHandle(T entity, TilePos pos) {
-		Tile tile = entity.level.getTile(pos);
-		tile.addCollisions(pos, BOXES, POOL);
-		tile.onCollide(entity);
+		Level level = entity.level;
+		Tile tile = level.getTile(pos);
+		tile.addCollisions(level, pos, BOXES, POOL);
+		tile.onCollide(entity, pos);
 	}
 	
 	default void collideX(T entity, Vector2 move) {

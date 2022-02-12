@@ -61,11 +61,6 @@ abstract class Base extends Game {
 
 	@Override
 	public void resize(int width, int height) {
-		int divide = Math.max(1, round(height/250f));
-		view.setUnitsPerPixel(1 / (float)Math.max(1, divide+guiOff));
-		view.update(width, height, true);
-		super.resize(width, height);
-		resize();
 		Inputs.clear();
 	}
 	

@@ -9,6 +9,7 @@ import com.andedit.dungeon.ui.util.AssetManager;
 import com.andedit.dungeon.util.Util;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
@@ -31,11 +32,13 @@ public class Main extends Base {
 		asset = new AssetManager();
 		setScreen(new Loading(asset));
 		Gdx.gl.glClearColor(0.15f, 0.15f, 0.2f, 1f);
+		Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
 	}
 	
 	@Override
 	public void render() {
 		frame.begin();
+		//Util.glClear();
 		super.render();
 		frame.end();
 		

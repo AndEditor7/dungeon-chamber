@@ -7,17 +7,20 @@ import com.andedit.dungeon.util.Util;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap.Format;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.VertexAttributes.Usage;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.FloatArray;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class FBO implements Disposable {
-	private static final int WIDTH = 320;
-	private static final int HEIGHT = 240;
+	public static final int WIDTH = 320; // 320
+	public static final int HEIGHT = 240; // 240
 	
 	private final FrameBuffer frame = new FrameBuffer(Format.RGBA8888, WIDTH, HEIGHT, true);
 	private final Vertex quad;
@@ -38,8 +41,9 @@ public class FBO implements Disposable {
 		quad.setVertices(array.items, array.size, 0);
 		
 		frame.getColorBufferTexture().bind(1);
+		frame.getColorBufferTexture().unsafeSetFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		shader.bind();
-		shader.setUniformf("size", frame.getWidth(), frame.getHeight());
+		shader.setUniformf("size", WIDTH, HEIGHT);
 		shader.setUniformi("tex", 1);
 		Gdx.gl.glUseProgram(0);
 		Gdx.gl.glActiveTexture(GL20.GL_TEXTURE0);
@@ -58,7 +62,7 @@ public class FBO implements Disposable {
 	
 	public void draw() {
 		QuadIndexBuffer.preBind();
-		view.apply(); // TODO: Remove this if this is unnecessary
+		view.apply(true);
 		shader.bind();
 		shader.setUniformMatrix("mat", view.getCamera().combined);
 		quad.bind();
@@ -67,7 +71,7 @@ public class FBO implements Disposable {
 	}
 	
 	public void resize(int width, int height) {
-		view.update(width, height);
+		view.update(width, height, true);
 	}
 	
 	@Override

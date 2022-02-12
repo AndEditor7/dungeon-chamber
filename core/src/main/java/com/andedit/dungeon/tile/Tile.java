@@ -1,9 +1,9 @@
 package com.andedit.dungeon.tile;
 
 import com.andedit.dungeon.entity.Entity;
+import com.andedit.dungeon.level.Level;
 import com.andedit.dungeon.util.TilePos;
 import com.andedit.dungeon.util.math.CollisionBox;
-import com.badlogic.gdx.math.GridPoint2;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
@@ -11,34 +11,29 @@ import com.badlogic.gdx.utils.Pool;
 public class Tile {	
 	protected static final Rectangle BOX = new Rectangle(0, 0, 1, 1);
 	
-	/** Texture index */
-	public final GridPoint2 index;
-	
 	int id;
 	
-	/** @param index of texture x and y coordinates. */
-	Tile(GridPoint2 index) {
+	Tile() {
 		Tiles.add(this);
-		this.index = index;
 	}
 	
-	public boolean hasCollision() {
-		return isWall();
+	public boolean hasCollision(Level level, TilePos pos) {
+		return isOpaque(level, pos);
 	}
 	
-	public boolean isWall() {
+	public boolean isOpaque(Level level, TilePos pos) {
 		return false;
 	}
 	
-	public void onCollide(Entity entity) {
+	public void onCollide(Entity entity, TilePos pos) {
 		
 	}
 	
-	public void onWalk(Entity entity) {
+	public void onWalk(Entity entity, TilePos pos) {
 		
 	}
 	
-	public Rectangle getBox() {
+	public Rectangle getBox(Level level, TilePos pos) {
 		return BOX;
 	}
 	
@@ -46,9 +41,9 @@ public class Tile {
 		return id;
 	}
 
-	public void addCollisions(TilePos pos, Array<CollisionBox> boxes, Pool<CollisionBox> pool) {
-		if (hasCollision()) {
-			Rectangle box = getBox();
+	public void addCollisions(Level level, TilePos pos, Array<CollisionBox> boxes, Pool<CollisionBox> pool) {
+		if (hasCollision(level, pos)) {
+			Rectangle box = getBox(level, pos);
 			boxes.add(pool.obtain().set(box.x+pos.x, box.y+pos.y, box.x+box.width+pos.x, box.y+box.height+pos.y));
 		}
 	}

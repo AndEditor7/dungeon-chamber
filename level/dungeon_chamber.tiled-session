@@ -4,11 +4,17 @@
         "width": 2
     },
     "activeFile": "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels/test.tmx",
+    "console.history": [
+        "help"
+    ],
     "expandedProjectPaths": [
-        "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels",
-        "."
+        ".",
+        "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels"
     ],
     "fileStates": {
+        "": {
+            "scaleInDock": 1
+        },
         "C:/Users/Owner/Desktop/Java/Helpful/Pacman_libGdx-master/core/assets/map/map.tmx": {
             "scale": 4,
             "selectedLayer": 2,
@@ -26,11 +32,11 @@
             }
         },
         "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels/test.tmx": {
-            "scale": 5.5,
-            "selectedLayer": 1,
+            "scale": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 262.3636363636364,
-                "y": 504.909090909091
+                "x": 506,
+                "y": 845
             }
         },
         "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels/tiles.tsx": {

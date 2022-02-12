@@ -1,0 +1,40 @@
+package com.andedit.dungeon.tile.model;
+
+import com.andedit.dungeon.Assets;
+import com.andedit.dungeon.graphic.MeshBuilder;
+import com.andedit.dungeon.level.Level;
+import com.andedit.dungeon.tile.Tile;
+import com.andedit.dungeon.util.TilePos;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
+public class FloorModel implements Model {
+	
+	private final TextureRegion floor, ceil;
+	
+	public FloorModel(int xIndex, int yIndex) {
+		this(xIndex, yIndex, xIndex, yIndex);
+	}
+	
+	public FloorModel(int xFloorIndex, int yFloorIndex, int xCeilIndex, int yCeilIndex) {
+		floor = Assets.getTileReg(xFloorIndex, yFloorIndex);
+		ceil  = Assets.getTileReg(xCeilIndex, yCeilIndex);
+	}
+	
+	@Override
+	public void build(MeshBuilder consumer, Level level, TilePos pos, Tile tile) {
+		final int x = pos.x, y = pos.y;
+		consumer.setRegion(floor);
+		consumer.setColor(level.colors.get(tile));
+		
+		consumer.vert1(1+x, 1+y, 0);
+		consumer.vert2(1+x, 0+y, 0);
+		consumer.vert3(0+x, 0+y, 0);
+		consumer.vert4(0+x, 1+y, 0);
+		
+		consumer.setRegion(ceil);
+		consumer.vert1(1+x, 0+y, 1);
+		consumer.vert2(1+x, 1+y, 1);
+		consumer.vert3(0+x, 1+y, 1);
+		consumer.vert4(0+x, 0+y, 1);
+	}
+}

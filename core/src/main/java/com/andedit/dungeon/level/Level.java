@@ -2,25 +2,30 @@ package com.andedit.dungeon.level;
 
 import com.andedit.dungeon.entity.Entity;
 import com.andedit.dungeon.tile.Tile;
+import com.andedit.dungeon.tile.TileColors;
 import com.andedit.dungeon.tile.Tiles;
 import com.andedit.dungeon.util.TilePos;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.utils.Array;
 
 public class Level {
 	
 	public final String id;
 	public final int xSize, ySize;
+	public final TileColors colors;
+	
+	final byte[][] tiles;
 	
 	private final TiledMap map;
 	private final TiledMapTileLayer layer;
-	private final byte[][] tiles;
 	
 	private final Array<Entity> entities = new Array<>(false, 64);
 	
-	public Level(TiledMap map) {
+	public Level(TiledMap map, TileColors colors) {
 		this.map = map;
+		this.colors = colors;
 		layer = (TiledMapTileLayer)map.getLayers().get(0);
 		id = map.getProperties().get("id", String.class);
 		xSize = layer.getWidth();
@@ -28,7 +33,8 @@ public class Level {
 		tiles = new byte[xSize][ySize];
 		for (int x = 0; x < xSize; x++)
 		for (int y = 0; y < ySize; y++) {
-			tiles[x][y] = (byte) layer.getCell(x, y).getTile().getId();
+			Cell tile = layer.getCell(x, y);
+			tiles[x][y] = tile == null ? 0 : (byte) (tile.getTile().getId()-1);
 		}
 	}
 	

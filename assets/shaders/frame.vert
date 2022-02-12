@@ -12,5 +12,5 @@ uniform mat4 mat;
 
 void main() {
 	uv = vec2(pos);
-	gl_Position = (pos * vec4(size, 1.0, 1.0)) * mat;
+	gl_Position = mat * (pos * vec4(size, 1.0, 1.0));
 }

@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.VertexAttributes.Usage;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
 public class Assets {
@@ -36,5 +37,9 @@ public class Assets {
 			new VertexAttribute(Usage.ColorPacked, 4, "color0"),
 			new VertexAttribute(Usage.TextureCoordinates, 2, "uv0")
 		);
+	}
+	
+	public static TextureRegion getTileReg(int x, int y) {
+		return new TextureRegion(TILES, x << 4, y << 4, 16, 16);
 	}
 }

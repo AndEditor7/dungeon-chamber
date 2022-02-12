@@ -1,15 +1,11 @@
 package com.andedit.dungeon.tile;
 
-import com.badlogic.gdx.math.GridPoint2;
+import com.andedit.dungeon.level.Level;
+import com.andedit.dungeon.util.TilePos;
 
 public class WallTile extends Tile {
-	
-	public WallTile(GridPoint2 index) {
-		super(index);
-	}
-	
 	@Override
-	public boolean isWall() {
+	public boolean isOpaque(Level level, TilePos pos) {
 		return true;
 	}
 }
