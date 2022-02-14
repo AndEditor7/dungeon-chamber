@@ -1,6 +1,7 @@
 package com.andedit.dungeon.graphic;
 
 import com.andedit.dungeon.graphic.vertex.Vertex;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.FloatArray;
 
@@ -19,6 +20,10 @@ public class MeshBuilder {
 	
 	public void setColor(float color) {
 		this.color = color;
+	}
+	
+	public void setColor(Color color) {
+		this.color = color.toFloatBits();
 	}
 	
 	public void vert1(float x, float y, float z) {

@@ -1,5 +1,6 @@
 package com.andedit.dungeon.lwjgl3;
 
+import com.badlogic.gdx.Graphics.DisplayMode;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.andedit.dungeon.Main;
@@ -14,16 +15,18 @@ public class Lwjgl3Launcher {
 		return new Lwjgl3Application(Main.main, getDefaultConfiguration());
 	}
 
+	@SuppressWarnings("unused")
 	private static Lwjgl3ApplicationConfiguration getDefaultConfiguration() {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setTitle("Dungeon Chamber");
-		config.useVsync(true);
-		//// Limits FPS to the refresh rate of the currently active monitor.
-		config.setForegroundFPS(60);
-		//// If you remove the above line and set Vsync to false, you can get unlimited FPS, which can be
-		//// useful for testing performance, but can also be very stressful to some hardware.
-		//// You may also need to configure GPU drivers to fully disable Vsync; this can cause screen tearing.
-		config.setWindowedMode(800, 600);
+		
+		// Fullscreen
+		if (false) {
+			DisplayMode mode = Lwjgl3ApplicationConfiguration.getDisplayMode();
+			config.setForegroundFPS(mode.refreshRate == 60 ? 100 : 60);
+			config.setFullscreenMode(mode);
+		}
+		
 		config.setWindowIcon("libgdx128.png", "libgdx64.png", "libgdx32.png", "libgdx16.png");
 		return config;
 	}

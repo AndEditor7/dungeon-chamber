@@ -8,8 +8,8 @@
         "help"
     ],
     "expandedProjectPaths": [
-        ".",
-        "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels"
+        "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels",
+        "."
     ],
     "fileStates": {
         "": {
@@ -32,11 +32,11 @@
             }
         },
         "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels/test.tmx": {
-            "scale": 1,
-            "selectedLayer": 0,
+            "scale": 3,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 506,
-                "y": 845
+                "x": 385,
+                "y": 1040
             }
         },
         "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels/tiles.tsx": {
@@ -46,6 +46,7 @@
         }
     },
     "last.imagePath": "C:/Users/Owner/Documents/GitHub/dungeon-chamber/level",
+    "last.objectTypesPath": "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels/objecttypes.xml",
     "map.fixedSize": true,
     "map.height": 80,
     "map.lastUsedFormat": "tmx",
@@ -58,10 +59,10 @@
         "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels/tiles.tsx"
     ],
     "project": "dungeon_chamber.tiled-project",
-    "property.type": "color",
+    "property.type": "int",
     "recentFiles": [
-        "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels/tiles.tsx",
-        "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels/test.tmx"
+        "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels/test.tmx",
+        "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels/tiles.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

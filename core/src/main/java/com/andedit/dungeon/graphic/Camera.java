@@ -4,30 +4,16 @@ import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Quaternion;
 
-/** A {@link PerspectiveCamera} with Pitch, yaw, and roll. */
+/** A {@link PerspectiveCamera} with yaw. */
 public final class Camera extends PerspectiveCamera 
 {
 	private static final Quaternion quat = new Quaternion();
 	
-	/** A pitch of up and down. */
-	public float pitch = -10;;
 	/** A yaw of left and right. */
 	public float yaw;
-	/** A roll like a doing barrel roll. */
-	public float roll;
 	
-	public Camera () {
-	}
-
-	/** Constructs a new {@link PerspectiveCamera} with the given field of view and viewport size. The aspect ratio is derived from
-	 * the viewport size.
-	 * 
-	 * @param fieldOfViewY the field of view of the height, in degrees, the field of view for the width will be calculated
-	 *           according to the aspect ratio.
-	 * @param viewportWidth the viewport width
-	 * @param viewportHeight the viewport height */
-	public Camera (float fieldOfViewY, float viewportWidth, float viewportHeight) {
-		super(fieldOfViewY, viewportWidth, viewportHeight);
+	{
+		fieldOfView = 70;
 	}
 	
 	public void updateRotation() {

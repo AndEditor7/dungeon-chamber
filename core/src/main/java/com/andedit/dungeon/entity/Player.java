@@ -2,11 +2,12 @@ package com.andedit.dungeon.entity;
 
 import com.andedit.dungeon.graphic.Camera;
 import com.andedit.dungeon.handle.Inputs;
+import com.andedit.dungeon.level.Level;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
-public class Player extends Entity {
+public class Player extends LiveEntity {
 	
 	private final Camera camera;
 	
@@ -40,6 +41,21 @@ public class Player extends Entity {
 	public void move() {
 		super.move();
 		Vector2 pos = getPos();
-		camera.position.set(pos.x, pos.y, 0.6f);
+		float height = level.getTile(getTilePos()).getHeight(this, getTilePos());
+		camera.position.set(pos.x, pos.y, height);
+	}
+	
+	@Override
+	public boolean isDead() {
+		return false;
+	}
+	
+	@Override
+	public void setLevel(Level level) {
+		if (this.level != null) {
+			this.level.player = null;
+		}
+		super.setLevel(level);
+		level.player = this;
 	}
 }

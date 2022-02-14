@@ -1,17 +1,19 @@
 package com.andedit.dungeon.level;
 
 import static com.andedit.dungeon.Assets.SHADER;
-import static com.andedit.dungeon.Assets.TILES;
+import static com.andedit.dungeon.Assets.TEXS;
 
+import com.andedit.dungeon.graphic.Camera;
 import com.andedit.dungeon.graphic.Chunk;
 import com.andedit.dungeon.graphic.MeshBuilder;
 import com.andedit.dungeon.graphic.QuadIndexBuffer;
+import com.andedit.dungeon.tile.entity.TileEntity;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
-public class LevelRenderer implements Disposable {
+public class Renderer implements Disposable {
 	private final MeshBuilder consumer = new MeshBuilder();
 	private final Array<Chunk> chunks = new Array<>(false, 64);
 	private Level level;
@@ -23,8 +25,6 @@ public class LevelRenderer implements Disposable {
 			chunks.clear();
 		}
 		
-		System.out.println(level.xSize);
-		
 		for (int x = 0; x < level.xSize / Chunk.SIZE; x++)
 		for (int y = 0; y < level.ySize / Chunk.SIZE; y++) {
 			chunks.add(new Chunk(x, y).build(consumer, level, level.tiles));
@@ -32,14 +32,20 @@ public class LevelRenderer implements Disposable {
 	}
 	
 	public void render(Camera camera) {
+		Gdx.gl.glEnable(GL20.GL_CULL_FACE);
 		QuadIndexBuffer.preBind();
-		TILES.bind();
+		TEXS.bind();
 		SHADER.bind();
 		SHADER.setUniformMatrix("mat", camera.combined);
 		chunks.forEach(Chunk::render);
+		
+		Gdx.gl.glDisable(GL20.GL_CULL_FACE);
+		
+		for (TileEntity entity : level.getTileEntities()) {
+			entity.render(camera, consumer);
+		}
+		
 		Gdx.gl.glUseProgram(0);
-		
-		
 	}
 
 	@Override

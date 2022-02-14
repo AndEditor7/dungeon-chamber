@@ -31,14 +31,13 @@ public class Main extends Base {
 		Gdx.input.setInputProcessor(new InputMultiplexer(stage, inputs, Inputs.input));
 		asset = new AssetManager();
 		setScreen(new Loading(asset));
-		Gdx.gl.glClearColor(0.15f, 0.15f, 0.2f, 1f);
 		Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
+		Gdx.gl.glCullFace(GL20.GL_BACK);
 	}
 	
 	@Override
 	public void render() {
 		frame.begin();
-		//Util.glClear();
 		super.render();
 		frame.end();
 		

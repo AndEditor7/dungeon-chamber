@@ -5,6 +5,8 @@ import com.andedit.dungeon.graphic.MeshBuilder;
 import com.andedit.dungeon.level.Level;
 import com.andedit.dungeon.tile.Tile;
 import com.andedit.dungeon.util.TilePos;
+import com.andedit.dungeon.util.Util;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class FloorModel implements Model {
@@ -23,18 +25,20 @@ public class FloorModel implements Model {
 	@Override
 	public void build(MeshBuilder consumer, Level level, TilePos pos, Tile tile) {
 		final int x = pos.x, y = pos.y;
+		final Color color = level.colors.get(tile);
 		consumer.setRegion(floor);
-		consumer.setColor(level.colors.get(tile));
+		consumer.setColor(color);
 		
-		consumer.vert1(1+x, 1+y, 0);
-		consumer.vert2(1+x, 0+y, 0);
-		consumer.vert3(0+x, 0+y, 0);
-		consumer.vert4(0+x, 1+y, 0);
+		consumer.vert1(0+x, 1+y, 0);
+		consumer.vert2(0+x, 0+y, 0);
+		consumer.vert3(1+x, 0+y, 0);
+		consumer.vert4(1+x, 1+y, 0);
 		
+		consumer.setColor(Util.getShade(color, 0.9f));
 		consumer.setRegion(ceil);
-		consumer.vert1(1+x, 0+y, 1);
-		consumer.vert2(1+x, 1+y, 1);
-		consumer.vert3(0+x, 1+y, 1);
-		consumer.vert4(0+x, 0+y, 1);
+		consumer.vert1(0+x, 0+y, 1);
+		consumer.vert2(0+x, 1+y, 1);
+		consumer.vert3(1+x, 1+y, 1);
+		consumer.vert4(1+x, 0+y, 1);
 	}
 }

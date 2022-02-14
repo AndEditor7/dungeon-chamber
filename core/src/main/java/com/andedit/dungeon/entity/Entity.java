@@ -1,18 +1,27 @@
 package com.andedit.dungeon.entity;
 
 import com.andedit.dungeon.level.Level;
+import com.andedit.dungeon.util.TilePos;
 import com.andedit.dungeon.util.math.CollisionBox;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Null;
 
 public class Entity {
 	public final CollisionBox box = new CollisionBox();
 	public final Vector2 vel = new Vector2();
 	public boolean onCollide;
+	
+	@Null
 	public Level level;
 	
 	protected boolean isDead;
 	
 	private final Vector2 pos = new Vector2();
+	private final TilePos tilePos = new TilePos();
+	
+	public void setPos(Vector2 pos) {
+		setPos(pos.x, pos.y);
+	}
 	
 	public void setPos(float x, float y) {
 		float s = getSize() * 0.5f;
@@ -21,6 +30,10 @@ public class Entity {
 	
 	public Vector2 getPos() {
 		return box.getCenter(pos);
+	}
+	
+	public TilePos getTilePos() {
+		return tilePos.set(getPos());
 	}
 	
 	public void update() {
@@ -41,5 +54,12 @@ public class Entity {
 	
 	public boolean isDead() {
 		return isDead;
+	}
+
+	public void setLevel(Level level) {
+		if (this.level != null) {
+			this.level.removeEntity(this);
+		}
+		this.level = level;
 	}
 }

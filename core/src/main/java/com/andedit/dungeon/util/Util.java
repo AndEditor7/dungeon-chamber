@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 
 import com.andedit.dungeon.graphic.QuadIndexBuffer;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.MathUtils;
@@ -47,6 +48,10 @@ public final class Util {
 	
 	public static ShaderProgram newShader(String path) {
 		return new ShaderProgram(Gdx.files.internal(path + ".vert"), Gdx.files.internal(path + ".frag"));
+	}
+	
+	public static float getShade(Color color, float scl) {
+		return Color.toFloatBits(color.r * scl, color.g * scl, color.b * scl, 1f);
 	}
 
 	/** Create a new change listener using java 8 lambda. */

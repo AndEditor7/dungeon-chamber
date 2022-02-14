@@ -64,6 +64,10 @@ public final class TilePos {
 		return this;
 	}
 	
+	public boolean match(TilePos pos) {
+		return x == pos.x && y == pos.y;
+	}
+	
 	@Override
 	public int hashCode() {
 		return x + y * 51;
@@ -74,8 +78,7 @@ public final class TilePos {
 		if (obj == this) return true;
 		if (obj == null) return false;
 		if (obj.getClass() == getClass()) {
-			TilePos pos = (TilePos) obj;
-			return x == pos.x && y == pos.y;
+			return match((TilePos) obj);
 		}
 		return false;
 	}

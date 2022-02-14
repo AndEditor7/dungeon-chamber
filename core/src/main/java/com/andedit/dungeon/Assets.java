@@ -17,7 +17,7 @@ public class Assets {
 	
 	public static VertContext CONTEXT;
 	public static ShaderProgram SHADER;
-	public static Texture TILES;
+	public static Texture TEXS, GUI;
 
 	public static void load(AssetManager asset) {
 		FileHandleResolver resolver = asset.getFileHandleResolver();
@@ -25,7 +25,7 @@ public class Assets {
 		asset.setLoader(BitmapFont.class, new BitmapFontLoader(resolver));
 		asset.setLoader(ShaderProgram.class, new ShaderProgramLoader(resolver));
 		
-		asset.load("textures/tiles.png", Texture.class, t->TILES=t);
+		asset.load("textures/texs.png", Texture.class, t->TEXS=t);
 		asset.load("shaders/default.vert", ShaderProgram.class, t->SHADER=t);
 	}
 	
@@ -40,6 +40,6 @@ public class Assets {
 	}
 	
 	public static TextureRegion getTileReg(int x, int y) {
-		return new TextureRegion(TILES, x << 4, y << 4, 16, 16);
+		return new TextureRegion(TEXS, x << 4, y << 4, 16, 16);
 	}
 }

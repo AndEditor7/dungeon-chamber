@@ -1,6 +1,7 @@
 package com.andedit.dungeon.tile;
 
 import com.andedit.dungeon.entity.Entity;
+import com.andedit.dungeon.entity.Player;
 import com.andedit.dungeon.level.Level;
 import com.andedit.dungeon.util.TilePos;
 import com.andedit.dungeon.util.math.CollisionBox;
@@ -35,6 +36,11 @@ public class Tile {
 	
 	public Rectangle getBox(Level level, TilePos pos) {
 		return BOX;
+	}
+	
+	/** Get eye height for player */
+	public float getHeight(Player player, TilePos pos) {
+		return 0.6f;
 	}
 	
 	public int getId() {

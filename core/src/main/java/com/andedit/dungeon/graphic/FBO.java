@@ -19,7 +19,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class FBO implements Disposable {
-	public static final int WIDTH = 320; // 320
+	public static final int WIDTH =  320; // 320
 	public static final int HEIGHT = 240; // 240
 	
 	private final FrameBuffer frame = new FrameBuffer(Format.RGBA8888, WIDTH, HEIGHT, true);
@@ -62,7 +62,7 @@ public class FBO implements Disposable {
 	
 	public void draw() {
 		QuadIndexBuffer.preBind();
-		view.apply(true);
+		view.apply();
 		shader.bind();
 		shader.setUniformMatrix("mat", view.getCamera().combined);
 		quad.bind();

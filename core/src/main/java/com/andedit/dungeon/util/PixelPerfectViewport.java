@@ -1,6 +1,5 @@
 package com.andedit.dungeon.util;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 /** @author MGSX */
@@ -19,7 +18,7 @@ public class PixelPerfectViewport extends FitViewport {
 		float rate = Math.min(wRate, hRate);
 		
 		// round it down and limit to one
-		int iRate = Math.max(1, MathUtils.floor(rate));
+		int iRate = Math.max(1, (int) rate);
 		
 		// compute rounded viewport dimension
 		int viewportWidth = (int)getWorldWidth() * iRate;
