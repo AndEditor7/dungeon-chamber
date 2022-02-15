@@ -1,9 +1,13 @@
 package com.andedit.dungeon.entity;
 
+import com.andedit.dungeon.graphic.Camera;
+import com.andedit.dungeon.graphic.MeshBuilder;
 import com.andedit.dungeon.level.Level;
+import com.andedit.dungeon.ui.util.ObjHandler;
 import com.andedit.dungeon.util.TilePos;
 import com.andedit.dungeon.util.math.CollisionBox;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Null;
 
 public class Entity {
@@ -18,6 +22,16 @@ public class Entity {
 	
 	private final Vector2 pos = new Vector2();
 	private final TilePos tilePos = new TilePos();
+	
+	/** Soon will be removed */
+	@Deprecated
+	Entity() {
+	}
+	
+	public Entity(ObjHandler obj) {
+		setLevel(obj.level);
+		setPos(obj.getPos());
+	}
 	
 	public void setPos(Vector2 pos) {
 		setPos(pos.x, pos.y);
@@ -40,6 +54,10 @@ public class Entity {
 		
 	}
 	
+	public void render(Camera camera, MeshBuilder consumer) {
+		
+	}
+	
 	public void move() {
 		Collision.handle(this);
 	}
@@ -58,8 +76,14 @@ public class Entity {
 
 	public void setLevel(Level level) {
 		if (this.level != null) {
+			if (this.level == level) return;
 			this.level.removeEntity(this);
 		}
 		this.level = level;
+	}
+
+	public float dst(Camera camera) {
+		Vector3 pos = camera.position;
+		return getPos().dst2(pos.x, pos.y);
 	}
 }

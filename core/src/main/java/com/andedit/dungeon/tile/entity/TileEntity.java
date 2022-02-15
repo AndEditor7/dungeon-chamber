@@ -6,6 +6,7 @@ import com.andedit.dungeon.level.Level;
 import com.andedit.dungeon.tile.Tile;
 import com.andedit.dungeon.util.Clone;
 import com.andedit.dungeon.util.TilePos;
+import com.badlogic.gdx.math.Vector3;
 
 public class TileEntity {
 	public final TilePos pos;
@@ -42,9 +43,16 @@ public class TileEntity {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof TileEntity) {
-			return pos.equals(((TileEntity)obj).pos);
+			return match(((TileEntity)obj).pos);
 		}
 		
 		return false;
+	}
+
+	public float dst(Camera camera) {
+		Vector3 vec = camera.position;
+		final float a = (pos.x + 0.5f) - vec.x;
+		final float b = (pos.y + 0.5f) - vec.y;
+		return a * a + b * b;
 	}
 }

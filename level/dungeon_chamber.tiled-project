@@ -6,5 +6,5 @@
     "folders": [
         "../assets/levels"
     ],
-    "objectTypesFile": ""
+    "objectTypesFile": "../assets/levels/objecttypes.xml"
 }

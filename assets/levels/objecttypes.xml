@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objecttypes>
+ <objecttype name="Entity" color="#a0a0a4"/>
+ <objecttype name="Light" color="#a0a0a4">
+  <property name="Color" type="color"/>
+  <property name="Size" type="float" default="2"/>
+ </objecttype>
+ <objecttype name="LiveEntity" color="#a0a0a4">
+  <property name="Health" type="int" default="50"/>
+ </objecttype>
+</objecttypes>

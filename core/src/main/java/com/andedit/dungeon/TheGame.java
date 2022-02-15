@@ -28,7 +28,7 @@ public class TheGame extends ScreenAdapter {
 		camera.viewportWidth  = FBO.WIDTH;
 		camera.viewportHeight = FBO.HEIGHT;
 		camera.near = 0.2f;
-		camera.far = 50;
+		camera.far = 10;
 		
 		TileColors colors = new TileColors();
 		colors.addColor(Tiles.FLOOR, 150, 150, 150);

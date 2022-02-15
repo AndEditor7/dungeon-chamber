@@ -1,7 +1,18 @@
 package com.andedit.dungeon.entity;
 
+import com.andedit.dungeon.ui.util.ObjHandler;
+
 public class LiveEntity extends Entity {
 	public int health;
+	
+	@Deprecated
+	LiveEntity() {
+	}
+	
+	public LiveEntity(ObjHandler obj) {
+		super(obj);
+		health = obj.get("Health");
+	}
 	
 	public void hit(Entity entity, int hit) {
 		damage(hit);

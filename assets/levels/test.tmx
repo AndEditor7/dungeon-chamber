@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="48">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="65">
  <tileset firstgid="1" source="tiles.tsx"/>
  <layer id="1" name="Tile Layer" width="80" height="80">
   <data encoding="csv">
@@ -86,16 +86,105 @@
 </data>
  </layer>
  <objectgroup id="3" name="Object Layer">
-  <object id="30" name="player" x="375" y="1115.43">
+  <object id="30" name="Player" x="349.667" y="1118.76">
    <point/>
   </object>
-  <object id="45" name="goblin" x="372.667" y="1060.67">
+  <object id="45" name="Goblin" type="LiveEntity" x="389" y="1053.34">
+   <properties>
+    <property name="Health" type="int" value="20"/>
+   </properties>
    <point/>
   </object>
-  <object id="46" name="goblin" x="323" y="1007">
+  <object id="46" name="Goblin" type="LiveEntity" x="321.427" y="1006.79">
+   <properties>
+    <property name="Health" type="int" value="20"/>
+   </properties>
    <point/>
   </object>
-  <object id="47" name="goblin" x="335" y="1090.33">
+  <object id="47" name="Goblin" type="LiveEntity" x="297.667" y="1081.33">
+   <properties>
+    <property name="Health" type="int" value="20"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="48" name="Light" type="Light" x="343.667" y="1066">
+   <properties>
+    <property name="Color" type="color" value="#ff00ff00"/>
+    <property name="Size" type="float" value="3"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="49" name="Light" type="Light" x="398" y="1094.33">
+   <properties>
+    <property name="Color" type="color" value="#ff0000ff"/>
+    <property name="Size" type="float" value="3"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="52" name="Light" type="Light" x="318.364" y="1008.7">
+   <properties>
+    <property name="Color" type="color" value="#ff0000ff"/>
+    <property name="Size" type="float" value="3"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="56" name="Light" type="Light" x="271" y="1048.33">
+   <properties>
+    <property name="Color" type="color" value="#ffff0000"/>
+    <property name="Size" type="float" value="3"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="57" name="Light" type="Light" x="253.667" y="978.667">
+   <properties>
+    <property name="Color" type="color" value="#ff00ff00"/>
+    <property name="Size" type="float" value="3"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="58" name="Goblin" type="LiveEntity" x="265.667" y="1116">
+   <properties>
+    <property name="Health" type="int" value="20"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="59" name="Light" type="Light" x="209.667" y="1048.67">
+   <properties>
+    <property name="Color" type="color" value="#ff0000ff"/>
+    <property name="Size" type="float" value="3"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="60" name="Light" type="Light" x="256.333" y="1098.67">
+   <properties>
+    <property name="Color" type="color" value="#ffff00ff"/>
+    <property name="Size" type="float" value="3"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="61" name="Light" type="Light" x="363" y="1122.67">
+   <properties>
+    <property name="Color" type="color" value="#ffff0000"/>
+    <property name="Size" type="float" value="3"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="62" name="Goblin" type="LiveEntity" x="349.667" y="1068.67">
+   <properties>
+    <property name="Health" type="int" value="20"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="63" name="Goblin" type="LiveEntity" x="264.667" y="1001">
+   <properties>
+    <property name="Health" type="int" value="20"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="64" name="Goblin" type="LiveEntity" x="368.667" y="1015.33">
+   <properties>
+    <property name="Health" type="int" value="20"/>
+   </properties>
    <point/>
   </object>
  </objectgroup>

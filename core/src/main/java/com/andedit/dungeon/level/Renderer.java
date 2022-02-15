@@ -1,21 +1,28 @@
 package com.andedit.dungeon.level;
 
+import static com.andedit.dungeon.Assets.CONTEXT;
 import static com.andedit.dungeon.Assets.SHADER;
 import static com.andedit.dungeon.Assets.TEXS;
+import static com.badlogic.gdx.Gdx.gl;
 
+import com.andedit.dungeon.entity.Entity;
 import com.andedit.dungeon.graphic.Camera;
 import com.andedit.dungeon.graphic.Chunk;
+import com.andedit.dungeon.graphic.Lights;
 import com.andedit.dungeon.graphic.MeshBuilder;
 import com.andedit.dungeon.graphic.QuadIndexBuffer;
+import com.andedit.dungeon.graphic.vertex.Vertex;
 import com.andedit.dungeon.tile.entity.TileEntity;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
 public class Renderer implements Disposable {
+	private static final float DST = 10 * 10;
 	private final MeshBuilder consumer = new MeshBuilder();
 	private final Array<Chunk> chunks = new Array<>(false, 64);
+	private final Vertex mesh = Vertex.newVa(CONTEXT);
+	private final Lights lits = new Lights(SHADER);
 	private Level level;
 	
 	public void setLevel(Level level) {
@@ -32,25 +39,36 @@ public class Renderer implements Disposable {
 	}
 	
 	public void render(Camera camera) {
-		Gdx.gl.glEnable(GL20.GL_CULL_FACE);
+		gl.glEnable(GL20.GL_CULL_FACE);
 		QuadIndexBuffer.preBind();
 		TEXS.bind();
 		SHADER.bind();
 		SHADER.setUniformMatrix("mat", camera.combined);
+		lits.bind(level.getEntities());
+		
 		chunks.forEach(Chunk::render);
-		
-		Gdx.gl.glDisable(GL20.GL_CULL_FACE);
-		
 		for (TileEntity entity : level.getTileEntities()) {
+			if (entity.dst(camera) < DST)
+			entity.render(camera, consumer);
+		}
+		for (Entity entity : level.getEntities()) {
+			if (entity.dst(camera) < DST)
 			entity.render(camera, consumer);
 		}
 		
-		Gdx.gl.glUseProgram(0);
+		mesh.bind();
+		int size = consumer.build(mesh);
+		gl.glDrawElements(GL20.GL_TRIANGLES, (size / CONTEXT.getAttrs().vertexSize) * 6, GL20.GL_UNSIGNED_SHORT, 0);
+		mesh.unbind();
+		
+		gl.glUseProgram(0);
+		gl.glDisable(GL20.GL_CULL_FACE);
 	}
 
 	@Override
 	public void dispose() {
 		chunks.forEach(Chunk::dispose);
 		chunks.clear();
+		mesh.dispose();
 	}
 }

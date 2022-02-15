@@ -3,6 +3,8 @@ package com.andedit.dungeon.graphic;
 import com.andedit.dungeon.graphic.vertex.Vertex;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.FloatArray;
 
 // v3-----v2
@@ -11,6 +13,7 @@ import com.badlogic.gdx.utils.FloatArray;
 // v4-----v1
 public class MeshBuilder {
 	private final FloatArray array = new FloatArray(512);
+	private final Matrix4 mat = new Matrix4();
 	private TextureRegion region;
 	private float color;
 	
@@ -56,8 +59,19 @@ public class MeshBuilder {
 		array.add(c, u, v);
 	}
 	
-	public void build(Vertex vertex) {
-		vertex.setVertices(array.items, array.size, 0);
+	public void draw(Camera camera, float x, float y, float z) {
+		Vector3 up = camera.upward;
+		Vector3 dw = camera.down;
+		vert1(x+dw.x, y+dw.y, z+dw.z);
+		vert2(x+up.x, y+up.y, z+up.z);
+		vert3(x-dw.x, y-dw.y, z-dw.z);
+		vert4(x-up.x, y-up.y, z-up.z);
+	}
+	
+	public int build(Vertex vertex) {
+		int size = array.size;
+		vertex.setVertices(array.items, size, 0);
 		array.clear();
+		return size;
 	}
 }

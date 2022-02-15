@@ -11,8 +11,10 @@ public class Player extends LiveEntity {
 	
 	private final Camera camera;
 	
+	@SuppressWarnings("deprecation")
 	public Player(Camera camera) {
 		this.camera = camera;
+		this.health = 50;
 	}
 	
 	@Override
@@ -53,6 +55,7 @@ public class Player extends LiveEntity {
 	@Override
 	public void setLevel(Level level) {
 		if (this.level != null) {
+			if (this.level == level) return; 
 			this.level.player = null;
 		}
 		super.setLevel(level);
