@@ -26,7 +26,7 @@ void main() {
 	if (pix.a < 0.1) discard; // Don't draw the transparent pixel.
 	pix.a = 1.0;
 	
-	// Lighting
+	// Multi Lighting
 	vec3 light = vec3(0.0); 
 	for (int i = 0; i < size; i++) {
 		Light lit = lits[i];
@@ -35,6 +35,7 @@ void main() {
 	}
 	pix.rgb *= max(vec3(0.1), pow(light, vec3(gamma)));
 	
+	// Fog
 	float z = (gl_FragCoord.z/gl_FragCoord.w);
 	float factor = (end - z) / (end - start);
 	gl_FragColor = mix(pix * color, vec4(0.0), clamp(factor, 0.0, 1.0));
