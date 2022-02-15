@@ -31,7 +31,7 @@ void main() {
 	for (int i = 0; i < size; i++) {
 		Light lit = lits[i];
 		float len = max(lit.size - distance(vec3(lit.pos, 0.5), pos), 0.0);
-		light += lit.color * (len / 1.5);
+		light += lit.color * (len / lit.size);
 	}
 	pix.rgb *= max(vec3(0.1), pow(light, vec3(gamma)));
 	
