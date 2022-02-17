@@ -3,7 +3,8 @@ package com.andedit.dungeon.entity;
 import com.andedit.dungeon.Assets;
 import com.andedit.dungeon.graphic.Camera;
 import com.andedit.dungeon.graphic.MeshBuilder;
-import com.andedit.dungeon.ui.util.ObjHandler;
+import com.andedit.dungeon.graphic.PathTrace;
+import com.andedit.dungeon.handle.ObjHandler;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -33,6 +34,7 @@ public class Goblin extends LiveEntity {
 		consumer.setColor(Color.WHITE_FLOAT_BITS);
 		
 		Vector2 pos = getPos();
+		consumer.setLight(PathTrace.trace(level, pos.x, pos.y));
 		consumer.draw(camera, pos.x, pos.y, 0.5f);
 	}
 }

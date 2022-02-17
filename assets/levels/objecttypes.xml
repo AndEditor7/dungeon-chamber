@@ -4,6 +4,7 @@
  <objecttype name="Light" color="#a0a0a4">
   <property name="Color" type="color"/>
   <property name="Size" type="float" default="2"/>
+  <property name="Strength" type="float" default="1"/>
  </objecttype>
  <objecttype name="LiveEntity" color="#a0a0a4">
   <property name="Health" type="int" default="50"/>

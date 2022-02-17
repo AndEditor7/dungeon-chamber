@@ -44,7 +44,11 @@ public class Renderer implements Disposable {
 		TEXS.bind();
 		SHADER.bind();
 		SHADER.setUniformMatrix("mat", camera.combined);
-		lits.bind(level.getEntities());
+		//lits.bind(level.getEntities());
+		for (Entity entity : level.getEntities()) {
+			entity.addLights(lits);
+		}
+		lits.flush();
 		
 		chunks.forEach(Chunk::render);
 		for (TileEntity entity : level.getTileEntities()) {

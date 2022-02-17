@@ -1,9 +1,9 @@
 package com.andedit.dungeon.graphic;
 
+import com.andedit.dungeon.graphic.SubDivider.Vert;
 import com.andedit.dungeon.graphic.vertex.Vertex;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.FloatArray;
 
@@ -13,9 +13,9 @@ import com.badlogic.gdx.utils.FloatArray;
 // v4-----v1
 public class MeshBuilder {
 	private final FloatArray array = new FloatArray(512);
-	private final Matrix4 mat = new Matrix4();
-	private TextureRegion region;
-	private float color;
+	TextureRegion region;
+	private float color, light = Color.WHITE_FLOAT_BITS;
+	public final SubDivider divider = new SubDivider(this);
 	
 	public void setRegion(TextureRegion region) {
 		this.region = region;
@@ -29,34 +29,46 @@ public class MeshBuilder {
 		this.color = color.toFloatBits();
 	}
 	
+	public void setColor(Vector3 color) {
+		this.color = Color.toFloatBits(color.x, color.y, color.z, 1f);
+	}
+	
+	public void setLight(float light) {
+		this.light = light;
+	}
+	
 	public void vert1(float x, float y, float z) {
-		array.add(x, y, z);
-		array.add(color, region.getU2(), region.getV2());
+		array.add(x, y, z, color);
+		array.add(light, region.getU2(), region.getV2());
 	}
 	
 	public void vert2(float x, float y, float z) {
-		array.add(x, y, z);
-		array.add(color, region.getU2(), region.getV());
+		array.add(x, y, z, color);
+		array.add(light, region.getU2(), region.getV());
 	}
 	
 	public void vert3(float x, float y, float z) {
-		array.add(x, y, z);
-		array.add(color, region.getU(), region.getV());
+		array.add(x, y, z, color);
+		array.add(light, region.getU(), region.getV());
 	}
 	
 	public void vert4(float x, float y, float z) {
-		array.add(x, y, z);
-		array.add(color, region.getU(), region.getV2());
+		array.add(x, y, z, color);
+		array.add(light, region.getU(), region.getV2());
+	}
+	
+	void vertex(Vert vert) {
+		vertex(vert.x, vert.y, vert.z, vert.u, vert.v);
 	}
 	
 	public void vertex(float x, float y, float z, float u, float v) {
-		array.add(x, y, z);
-		array.add(color, u, v);
+		array.add(x, y, z, color);
+		array.add(light, u, v);
 	}
 	
-	public void vertex(float x, float y, float z, float c, float u, float v) {
-		array.add(x, y, z);
-		array.add(c, u, v);
+	public void vertex(float x, float y, float z, float c, float l, float u, float v) {
+		array.add(x, y, z, c);
+		array.add(l, u, v);
 	}
 	
 	public void draw(Camera camera, float x, float y, float z) {
@@ -66,6 +78,14 @@ public class MeshBuilder {
 		vert2(x+up.x, y+up.y, z+up.z);
 		vert3(x-dw.x, y-dw.y, z-dw.z);
 		vert4(x-up.x, y-up.y, z-up.z);
+	}
+	
+	public int getSize() {
+		return array.size;
+	}
+	
+	public float[] getArray() {
+		return array.items;
 	}
 	
 	public int build(Vertex vertex) {

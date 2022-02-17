@@ -2,9 +2,10 @@ package com.andedit.dungeon.level;
 
 import java.util.function.BiConsumer;
 
+import com.andedit.dungeon.entity.Atomic;
 import com.andedit.dungeon.entity.Goblin;
-import com.andedit.dungeon.entity.Light;
-import com.andedit.dungeon.ui.util.ObjHandler;
+import com.andedit.dungeon.graphic.Light;
+import com.andedit.dungeon.handle.ObjHandler;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.utils.ObjectMap;
@@ -20,7 +21,10 @@ class MapObjs {
 			level.addEntity(new Goblin(obj));
 		});
 		MAP.put("Light", (level, obj) -> {
-			level.addEntity(new Light(obj));
+			level.addLight(new Light(obj));
+		});
+		MAP.put("Atomic", (level, obj) -> {
+			level.addEntity(new Atomic(obj));
 		});
 	}
 	

@@ -1,6 +1,6 @@
 package com.andedit.dungeon.entity;
 
-import com.andedit.dungeon.ui.util.ObjHandler;
+import com.andedit.dungeon.handle.ObjHandler;
 
 public class LiveEntity extends Entity {
 	public int health;

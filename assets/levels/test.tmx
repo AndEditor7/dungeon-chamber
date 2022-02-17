@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="65">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="84">
  <tileset firstgid="1" source="tiles.tsx"/>
  <layer id="1" name="Tile Layer" width="80" height="80">
   <data encoding="csv">
@@ -43,20 +43,20 @@
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,2,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,1,2,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,2,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,2,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,2,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,1,2,1,2,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,2,2,1,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,2,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,2,1,1,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,2,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,2,1,1,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,2,1,2,2,2,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,2,1,2,2,2,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,2,1,2,2,2,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -86,13 +86,7 @@
 </data>
  </layer>
  <objectgroup id="3" name="Object Layer">
-  <object id="30" name="Player" x="349.667" y="1118.76">
-   <point/>
-  </object>
-  <object id="45" name="Goblin" type="LiveEntity" x="389" y="1053.34">
-   <properties>
-    <property name="Health" type="int" value="20"/>
-   </properties>
+  <object id="30" name="Player" x="356.917" y="1101.93">
    <point/>
   </object>
   <object id="46" name="Goblin" type="LiveEntity" x="321.427" y="1006.79">
@@ -107,31 +101,19 @@
    </properties>
    <point/>
   </object>
-  <object id="48" name="Light" type="Light" x="343.667" y="1066">
+  <object id="52" name="Light" type="Light" x="344.114" y="1133.7">
    <properties>
-    <property name="Color" type="color" value="#ff00ff00"/>
-    <property name="Size" type="float" value="3"/>
+    <property name="Color" type="color" value="#ffbeb265"/>
+    <property name="Size" type="float" value="2.5"/>
+    <property name="Strength" type="float" value="1"/>
    </properties>
    <point/>
   </object>
-  <object id="49" name="Light" type="Light" x="398" y="1094.33">
-   <properties>
-    <property name="Color" type="color" value="#ff0000ff"/>
-    <property name="Size" type="float" value="3"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="52" name="Light" type="Light" x="318.364" y="1008.7">
-   <properties>
-    <property name="Color" type="color" value="#ff0000ff"/>
-    <property name="Size" type="float" value="3"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="56" name="Light" type="Light" x="271" y="1048.33">
+  <object id="56" name="Light" type="Light" x="257.25" y="1051.08">
    <properties>
     <property name="Color" type="color" value="#ffff0000"/>
     <property name="Size" type="float" value="3"/>
+    <property name="Strength" type="float" value="1"/>
    </properties>
    <point/>
   </object>
@@ -139,6 +121,7 @@
    <properties>
     <property name="Color" type="color" value="#ff00ff00"/>
     <property name="Size" type="float" value="3"/>
+    <property name="Strength" type="float" value="1"/>
    </properties>
    <point/>
   </object>
@@ -152,26 +135,15 @@
    <properties>
     <property name="Color" type="color" value="#ff0000ff"/>
     <property name="Size" type="float" value="3"/>
+    <property name="Strength" type="float" value="1"/>
    </properties>
    <point/>
   </object>
-  <object id="60" name="Light" type="Light" x="256.333" y="1098.67">
+  <object id="60" name="Light" type="Light" x="253.083" y="1115.67">
    <properties>
     <property name="Color" type="color" value="#ffff00ff"/>
     <property name="Size" type="float" value="3"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="61" name="Light" type="Light" x="363" y="1122.67">
-   <properties>
-    <property name="Color" type="color" value="#ffff0000"/>
-    <property name="Size" type="float" value="3"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="62" name="Goblin" type="LiveEntity" x="349.667" y="1068.67">
-   <properties>
-    <property name="Health" type="int" value="20"/>
+    <property name="Strength" type="float" value="1"/>
    </properties>
    <point/>
   </object>
@@ -185,6 +157,87 @@
    <properties>
     <property name="Health" type="int" value="20"/>
    </properties>
+   <point/>
+  </object>
+  <object id="70" name="Light" type="Light" x="294.25" y="999">
+   <properties>
+    <property name="Color" type="color" value="#ff0000ff"/>
+    <property name="Size" type="float" value="3"/>
+    <property name="Strength" type="float" value="1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="71" name="Light" type="Light" x="376.75" y="1134">
+   <properties>
+    <property name="Color" type="color" value="#ffbeb265"/>
+    <property name="Size" type="float" value="2.5"/>
+    <property name="Strength" type="float" value="1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="72" name="Light" type="Light" x="396.75" y="1080.25">
+   <properties>
+    <property name="Color" type="color" value="#ffbeb265"/>
+    <property name="Size" type="float" value="2.5"/>
+    <property name="Strength" type="float" value="1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="73" name="Light" type="Light" x="344.25" y="1044">
+   <properties>
+    <property name="Color" type="color" value="#ffbeb265"/>
+    <property name="Size" type="float" value="2.5"/>
+    <property name="Strength" type="float" value="1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="75" name="Light" type="Light" x="323.5" y="1081">
+   <properties>
+    <property name="Color" type="color" value="#ffbeb265"/>
+    <property name="Size" type="float" value="2.5"/>
+    <property name="Strength" type="float" value="1"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="76" name="Light" type="Light" x="584" y="763">
+   <properties>
+    <property name="Color" type="color" value="#ff1eff1e"/>
+    <property name="Size" type="float" value="20"/>
+    <property name="Strength" type="float" value="1.5"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="77" name="Light" type="Light" x="792" y="665.5">
+   <properties>
+    <property name="Color" type="color" value="#ffff1e1e"/>
+    <property name="Size" type="float" value="20"/>
+    <property name="Strength" type="float" value="1.5"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="78" name="Light" type="Light" x="1077" y="152">
+   <properties>
+    <property name="Color" type="color" value="#ffffffff"/>
+    <property name="Size" type="float" value="40"/>
+    <property name="Strength" type="float" value="2"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="79" name="Light" type="Light" x="759.5" y="825">
+   <properties>
+    <property name="Color" type="color" value="#ff2828ff"/>
+    <property name="Size" type="float" value="20"/>
+    <property name="Strength" type="float" value="1.5"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="81" name="Atomic" x="370" y="1069.5">
+   <point/>
+  </object>
+  <object id="82" name="Atomic" x="280.25" y="1097.5">
+   <point/>
+  </object>
+  <object id="83" name="Atomic" x="293.5" y="1016.75">
    <point/>
   </object>
  </objectgroup>

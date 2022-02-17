@@ -16,7 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.BufferUtils;
 
 public final class Util {
-	public static final ByteBuffer BUFFER = BufferUtils.newByteBuffer(QuadIndexBuffer.maxVertex * 24);
+	public static final ByteBuffer BUFFER = BufferUtils.newByteBuffer(QuadIndexBuffer.maxVertex * 28);
 
 	public static float lerp(float fromValue, float toValue, float progress, float clamp) {
 		final float delta = (toValue - fromValue) * progress;

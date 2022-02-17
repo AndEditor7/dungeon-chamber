@@ -19,6 +19,7 @@ public class Lwjgl3Launcher {
 	private static Lwjgl3ApplicationConfiguration getDefaultConfiguration() {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setTitle("Dungeon Chamber");
+		config.enableGLDebugOutput(true, System.err);
 		
 		// Fullscreen
 		if (false) {

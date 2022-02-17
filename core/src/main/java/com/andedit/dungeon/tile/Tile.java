@@ -23,6 +23,10 @@ public class Tile {
 	}
 	
 	public boolean isOpaque(Level level, TilePos pos) {
+		return isOpaque();
+	}
+	
+	public boolean isOpaque() {
 		return false;
 	}
 	

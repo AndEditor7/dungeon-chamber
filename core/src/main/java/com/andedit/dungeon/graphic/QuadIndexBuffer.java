@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.GL20;
 /** This QuadIndexBuffer intention to render meshes with "quads" instead of triangles. */
 public final class QuadIndexBuffer 
 {
-	public static final int maxIndex  = 98304 >> 2;
+	public static final int maxIndex  = 98304 >> 1;
 	public static final int maxVertex = (maxIndex/6)*4;
 	
 	static int bufferHandle;

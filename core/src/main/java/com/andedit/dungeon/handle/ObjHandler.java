@@ -1,4 +1,4 @@
-package com.andedit.dungeon.ui.util;
+package com.andedit.dungeon.handle;
 
 import com.andedit.dungeon.level.Level;
 import com.badlogic.gdx.maps.MapObject;

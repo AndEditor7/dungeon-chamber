@@ -2,6 +2,7 @@ package com.andedit.dungeon.level;
 
 import com.andedit.dungeon.entity.Entity;
 import com.andedit.dungeon.entity.Player;
+import com.andedit.dungeon.graphic.Light;
 import com.andedit.dungeon.tile.Tile;
 import com.andedit.dungeon.tile.TileColors;
 import com.andedit.dungeon.tile.Tiles;
@@ -32,6 +33,7 @@ public class Level {
 	final byte[][] tiles;
 	private final Array<TileEntity> tileEntities = new Array<>(false, 128);
 	private final Array<Entity> entities = new Array<>(false, 128);
+	private final Array<Light> lights = new Array<>(false, 128);
 	
 	public Level(TiledMap map, TileColors colors) {
 		this.colors = colors;
@@ -76,6 +78,10 @@ public class Level {
 		return tileEntities.iterator();
 	}
 	
+	public Iterable<Light> getLights() {
+		return lights.iterator();
+	}
+	
 	/** Get player starting position */
 	@Null
 	public Vector2 getStarting() {
@@ -88,8 +94,12 @@ public class Level {
 		entities.add(entity);
 	}
 	
-	public void addTileEntity() {
-		
+	public void addLight(Light light) {
+		lights.add(light);
+	}
+	
+	public void addTileEntity(TileEntity entity) {
+		tileEntities.add(entity);
 	}
 	
 	public void removeEntity(Entity entity) {

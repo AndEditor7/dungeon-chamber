@@ -1,9 +1,10 @@
 package com.andedit.dungeon.entity;
 
 import com.andedit.dungeon.graphic.Camera;
+import com.andedit.dungeon.graphic.Lights;
 import com.andedit.dungeon.graphic.MeshBuilder;
+import com.andedit.dungeon.handle.ObjHandler;
 import com.andedit.dungeon.level.Level;
-import com.andedit.dungeon.ui.util.ObjHandler;
 import com.andedit.dungeon.util.TilePos;
 import com.andedit.dungeon.util.math.CollisionBox;
 import com.badlogic.gdx.math.Vector2;
@@ -55,6 +56,10 @@ public class Entity {
 	}
 	
 	public void render(Camera camera, MeshBuilder consumer) {
+		
+	}
+	
+	public void addLights(Lights lights) {
 		
 	}
 	
