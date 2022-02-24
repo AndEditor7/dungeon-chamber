@@ -61,6 +61,7 @@ abstract class Base extends Game {
 
 	@Override
 	public void resize(int width, int height) {
+		super.resize(width, height);
 		Inputs.clear();
 	}
 	

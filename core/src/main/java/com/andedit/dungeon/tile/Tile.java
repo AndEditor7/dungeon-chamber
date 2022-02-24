@@ -54,7 +54,7 @@ public class Tile {
 	public void addCollisions(Level level, TilePos pos, Array<CollisionBox> boxes, Pool<CollisionBox> pool) {
 		if (hasCollision(level, pos)) {
 			Rectangle box = getBox(level, pos);
-			boxes.add(pool.obtain().set(box.x+pos.x, box.y+pos.y, box.x+box.width+pos.x, box.y+box.height+pos.y));
+			boxes.add(pool.obtain().set(box, pos));
 		}
 	}
 }

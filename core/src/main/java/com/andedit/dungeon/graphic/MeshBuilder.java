@@ -14,7 +14,7 @@ import com.badlogic.gdx.utils.FloatArray;
 public class MeshBuilder {
 	private final FloatArray array = new FloatArray(512);
 	TextureRegion region;
-	private float color, light = Color.WHITE_FLOAT_BITS;
+	private float color;
 	public final SubDivider divider = new SubDivider(this);
 	
 	public void setRegion(TextureRegion region) {
@@ -33,28 +33,24 @@ public class MeshBuilder {
 		this.color = Color.toFloatBits(color.x, color.y, color.z, 1f);
 	}
 	
-	public void setLight(float light) {
-		this.light = light;
-	}
-	
 	public void vert1(float x, float y, float z) {
-		array.add(x, y, z, color);
-		array.add(light, region.getU2(), region.getV2());
+		array.add(x, y, z);
+		array.add(color, region.getU2(), region.getV2());
 	}
 	
 	public void vert2(float x, float y, float z) {
-		array.add(x, y, z, color);
-		array.add(light, region.getU2(), region.getV());
+		array.add(x, y, z);
+		array.add(color, region.getU2(), region.getV());
 	}
 	
 	public void vert3(float x, float y, float z) {
-		array.add(x, y, z, color);
-		array.add(light, region.getU(), region.getV());
+		array.add(x, y, z);
+		array.add(color, region.getU(), region.getV());
 	}
 	
 	public void vert4(float x, float y, float z) {
-		array.add(x, y, z, color);
-		array.add(light, region.getU(), region.getV2());
+		array.add(x, y, z);
+		array.add(color, region.getU(), region.getV2());
 	}
 	
 	void vertex(Vert vert) {
@@ -62,13 +58,13 @@ public class MeshBuilder {
 	}
 	
 	public void vertex(float x, float y, float z, float u, float v) {
-		array.add(x, y, z, color);
-		array.add(light, u, v);
+		array.add(x, y, z);
+		array.add(color, u, v);
 	}
 	
-	public void vertex(float x, float y, float z, float c, float l, float u, float v) {
-		array.add(x, y, z, c);
-		array.add(l, u, v);
+	public void vertex(float x, float y, float z, float c, float u, float v) {
+		array.add(x, y, z);
+		array.add(c, u, v);
 	}
 	
 	public void draw(Camera camera, float x, float y, float z) {

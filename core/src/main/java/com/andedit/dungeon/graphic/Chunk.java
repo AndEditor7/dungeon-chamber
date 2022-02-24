@@ -26,11 +26,13 @@ public class Chunk implements Vertex {
 		this.yPos = yPos;
 	}
 	
-	public void render() {
+	public void render(Camera camera) {
 		if (count == 0) return;
-		vertex.bind();
-		gl.glDrawElements(GL20.GL_TRIANGLES, count, GL20.GL_UNSIGNED_SHORT, 0);
-		vertex.unbind();
+		if (camera.frust(xPos*SIZE, yPos*SIZE, 0, 16, 16, 1)) {
+			vertex.bind();
+			gl.glDrawElements(GL20.GL_TRIANGLES, count, GL20.GL_UNSIGNED_SHORT, 0);
+			vertex.unbind();
+		}
 	}
 	
 	public Chunk build(MeshBuilder consumer, Level level, byte[][] tiles) {
@@ -41,12 +43,6 @@ public class Chunk implements Vertex {
 			POS.set(xPos+x, yPos+y);
 			int id = tiles[xPos+x][yPos+y];
 			Models.get(id).build(consumer, level, POS, Tiles.get(id));
-		}
-		
-		int size = consumer.getSize();
-		float[] array = consumer.getArray();
-		for (int i = 0; i < size; i += VertInfo.getFloatSize()) {
-			array[i+4] = PathTrace.trace(level, array[i], array[i+1]);
 		}
 		
 		consumer.build(this);

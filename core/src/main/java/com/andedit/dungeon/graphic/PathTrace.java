@@ -38,10 +38,6 @@ public class PathTrace {
 			int x, y;
 			x = MathUtils.floor(xf);
 			y = MathUtils.floor(yf);
-			
-			final int xPos, yPos;
-			xPos = x;
-			yPos = y;
 
 			final int
 			xStep = sign(dir.x),

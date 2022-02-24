@@ -29,20 +29,17 @@ public class FloorModel implements Model {
 		final Color color = level.colors.get(tile);
 		consumer.setRegion(floor);
 		consumer.setColor(color);
-		SubDivider divider = consumer.divider;
 				
-		divider.vert1(0+x, 1+y, 0);
-		divider.vert2(0+x, 0+y, 0);
-		divider.vert3(1+x, 0+y, 0);
-		divider.vert4(1+x, 1+y, 0);
-		divider.build();
+		consumer.vert1(0+x, 1+y, 0);
+		consumer.vert2(0+x, 0+y, 0);
+		consumer.vert3(1+x, 0+y, 0);
+		consumer.vert4(1+x, 1+y, 0);
 		
 		consumer.setColor(Util.getShade(color, 0.9f));
 		consumer.setRegion(ceil);
-		divider.vert1(0+x, 0+y, 1);
-		divider.vert2(0+x, 1+y, 1);
-		divider.vert3(1+x, 1+y, 1);
-		divider.vert4(1+x, 0+y, 1);
-		divider.build();
+		consumer.vert1(0+x, 0+y, 1);
+		consumer.vert2(0+x, 1+y, 1);
+		consumer.vert3(1+x, 1+y, 1);
+		consumer.vert4(1+x, 0+y, 1);
 	}
 }

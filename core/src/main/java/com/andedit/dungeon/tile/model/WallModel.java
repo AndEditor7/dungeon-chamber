@@ -24,43 +24,38 @@ public class WallModel implements Model {
 		final Color color = level.colors.get(tile);
 		consumer.setRegion(region);
 		consumer.setColor(color.toFloatBits());
-		SubDivider divider = consumer.divider;
 		
 		// north y-
 		if (!level.getTile(pos.set(x, y-1)).isOpaque(level, pos)) {
-			divider.vert1(1+x, 0+y, 0);
-			divider.vert2(1+x, 0+y, 1);
-			divider.vert3(0+x, 0+y, 1);
-			divider.vert4(0+x, 0+y, 0);
-			divider.buildV();
+			consumer.vert1(1+x, 0+y, 0);
+			consumer.vert2(1+x, 0+y, 1);
+			consumer.vert3(0+x, 0+y, 1);
+			consumer.vert4(0+x, 0+y, 0);
 		}
 		
 		// south y+
 		if (!level.getTile(pos.set(x, y+1)).isOpaque(level, pos)) {
-			divider.vert1(0+x, 1+y, 0);
-			divider.vert2(0+x, 1+y, 1);
-			divider.vert3(1+x, 1+y, 1);
-			divider.vert4(1+x, 1+y, 0);
-			divider.buildV();
+			consumer.vert1(0+x, 1+y, 0);
+			consumer.vert2(0+x, 1+y, 1);
+			consumer.vert3(1+x, 1+y, 1);
+			consumer.vert4(1+x, 1+y, 0);
 		}
 		
 		consumer.setColor(Util.getShade(color, 0.85f));		
 		// east x+
 		if (!level.getTile(pos.set(x+1, y)).isOpaque(level, pos)) {
-			divider.vert1(1+x, 1+y, 0);
-			divider.vert2(1+x, 1+y, 1);
-			divider.vert3(1+x, 0+y, 1);
-			divider.vert4(1+x, 0+y, 0);
-			divider.buildV();
+			consumer.vert1(1+x, 1+y, 0);
+			consumer.vert2(1+x, 1+y, 1);
+			consumer.vert3(1+x, 0+y, 1);
+			consumer.vert4(1+x, 0+y, 0);
 		}
 		
 		// west x-
 		if (!level.getTile(pos.set(x-1, y)).isOpaque(level, pos)) {
-			divider.vert1(0+x, 0+y, 0);
-			divider.vert2(0+x, 0+y, 1);
-			divider.vert3(0+x, 1+y, 1);
-			divider.vert4(0+x, 1+y, 0);
-			divider.buildV();
+			consumer.vert1(0+x, 0+y, 0);
+			consumer.vert2(0+x, 0+y, 1);
+			consumer.vert3(0+x, 1+y, 1);
+			consumer.vert4(0+x, 1+y, 0);
 		}
 	}
 }

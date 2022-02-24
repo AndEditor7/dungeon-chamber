@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.VertexAttributes.Usage;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.math.Interpolation;
 
 public class Assets {
 	
@@ -32,10 +33,10 @@ public class Assets {
 	public static void get(AssetManager asset) {
 		asset.getAll();
 		
-		CONTEXT = VertContext.of(SHADER, 
+		Interpolation.pow2In.apply(0);
+		CONTEXT = VertContext.of(SHADER,
 			new VertexAttribute(Usage.Position, 3, "pos0"),
 			new VertexAttribute(Usage.ColorPacked, 4, "color0"),
-			new VertexAttribute(Usage.ColorPacked, 4, "light0"),
 			new VertexAttribute(Usage.TextureCoordinates, 2, "uv0")
 		);
 		

@@ -27,8 +27,8 @@ public class TheGame extends ScreenAdapter {
 	public TheGame() {
 		camera.viewportWidth  = FBO.WIDTH;
 		camera.viewportHeight = FBO.HEIGHT;
-		camera.near = 0.2f;
-		camera.far = 50;
+		camera.near = 0.15f;
+		camera.far = 40;
 		
 		TileColors colors = new TileColors();
 		colors.addColor(Tiles.FLOOR, 150, 150, 150);
@@ -55,6 +55,12 @@ public class TheGame extends ScreenAdapter {
 	}
 	
 	@Override
+	public void resize(int width, int height) {
+		camera.viewportWidth  = width;
+		camera.viewportHeight = height;
+	}
+	
+	@Override
 	public void hide() {
 		dispose();
 	}
@@ -63,6 +69,7 @@ public class TheGame extends ScreenAdapter {
 	public void dispose() {
 		if (dispose) return;
 		render.dispose();
+		level.dispose();
 		dispose = true;
 	}
 }

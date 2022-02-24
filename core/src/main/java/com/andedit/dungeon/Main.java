@@ -37,12 +37,13 @@ public class Main extends Base {
 	
 	@Override
 	public void render() {
-		frame.begin();
-		super.render();
-		frame.end();
-		
 		Util.glClear();
-		frame.draw();
+		//frame.begin();
+		super.render();
+		//frame.end();
+		
+		//Util.glClear();
+		//frame.draw();
 	}
 	
 	void setMenu() {
@@ -52,7 +53,7 @@ public class Main extends Base {
 	@Override
 	public void resize(int width, int height) {
 		super.resize(width, height);
-		frame.resize(width, height);
+		//frame.resize(width, height);
 	}
 
 	@Override

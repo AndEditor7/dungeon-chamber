@@ -8,14 +8,19 @@ import com.andedit.dungeon.tile.TileColors;
 import com.andedit.dungeon.tile.Tiles;
 import com.andedit.dungeon.tile.entity.TileEntity;
 import com.andedit.dungeon.util.TilePos;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Pixmap.Blending;
+import com.badlogic.gdx.graphics.Pixmap.Filter;
+import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.Null;
 
-public class Level {
+public class Level implements Disposable {
 	/** Tile size */
 	public static final int SIZE = 16;
 	
@@ -29,6 +34,8 @@ public class Level {
 	
 	/** Player starting position */
 	Vector2 starting;
+	
+	final Pixmap pixmap;
 	
 	final byte[][] tiles;
 	private final Array<TileEntity> tileEntities = new Array<>(false, 128);
@@ -49,6 +56,15 @@ public class Level {
 		}
 		
 		MapObjs.handle(this, map.getLayers().get(1).getObjects());
+		
+		pixmap = new Pixmap(xSize, ySize, Format.Alpha);
+		pixmap.setBlending(Blending.None);
+		pixmap.setFilter(Filter.NearestNeighbour);
+		for (int x = 0; x < xSize; x++)
+		for (int y = 0; y < ySize; y++) {
+			if (Tiles.get(tiles[x][y]).isOpaque())
+				pixmap.drawPixel(x, y, -1);
+		}
 	}
 	
 	public void update() {
@@ -136,5 +152,10 @@ public class Level {
 		}
 		
 		tiles[x][y] = (byte)tile.getId();
+	}
+
+	@Override
+	public void dispose() {
+		pixmap.dispose();
 	}
 }

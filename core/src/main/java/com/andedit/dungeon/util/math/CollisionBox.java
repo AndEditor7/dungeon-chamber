@@ -3,6 +3,8 @@ package com.andedit.dungeon.util.math;
 import static java.lang.Math.min;
 import static java.lang.Math.max;
 
+import com.andedit.dungeon.util.TilePos;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.Ray;
@@ -96,5 +98,23 @@ public class CollisionBox {
 		final float max = min(maxx, maxz);
 
 		return max >= 0f && max >= min;
+	}
+
+	public CollisionBox set(Rectangle box, TilePos pos) {
+		set(box.x, box.y, box.x+box.width, box.y+box.height);
+		add(pos);
+		return this;
+	}
+	
+	public CollisionBox add(TilePos pos) {
+		return add(pos.x, pos.y);
+	}
+	
+	public CollisionBox add(float x, float y) {
+		xMin += x;
+		xMax += x;
+		yMin += y;
+		yMax += y;
+		return this;
 	}
 }

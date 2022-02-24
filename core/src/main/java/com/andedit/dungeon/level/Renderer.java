@@ -14,15 +14,18 @@ import com.andedit.dungeon.graphic.QuadIndexBuffer;
 import com.andedit.dungeon.graphic.vertex.Vertex;
 import com.andedit.dungeon.tile.entity.TileEntity;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
 public class Renderer implements Disposable {
-	private static final float DST = 10 * 10;
+	private static final float DST = 40 * 40;
 	private final MeshBuilder consumer = new MeshBuilder();
 	private final Array<Chunk> chunks = new Array<>(false, 64);
 	private final Vertex mesh = Vertex.newVa(CONTEXT);
 	private final Lights lits = new Lights(SHADER);
+	private Texture texture;
 	private Level level;
 	
 	public void setLevel(Level level) {
@@ -36,6 +39,14 @@ public class Renderer implements Disposable {
 		for (int y = 0; y < level.ySize / Chunk.SIZE; y++) {
 			chunks.add(new Chunk(x, y).build(consumer, level, level.tiles));
 		}
+		
+		if (texture != null) {
+			texture.dispose();
+		}
+		texture = new Texture(level.pixmap);
+		texture.bind(2);
+		texture	.unsafeSetFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		gl.glActiveTexture(GL20.GL_TEXTURE0);
 	}
 	
 	public void render(Camera camera) {
@@ -44,13 +55,16 @@ public class Renderer implements Disposable {
 		TEXS.bind();
 		SHADER.bind();
 		SHADER.setUniformMatrix("mat", camera.combined);
-		//lits.bind(level.getEntities());
+		SHADER.setUniformf("mapSize", level.xSize, level.ySize);
+		SHADER.setUniformi("map", 2);
 		for (Entity entity : level.getEntities()) {
 			entity.addLights(lits);
 		}
 		lits.flush();
 		
-		chunks.forEach(Chunk::render);
+		for (Chunk chunk : chunks) {
+			chunk.render(camera);
+		}
 		for (TileEntity entity : level.getTileEntities()) {
 			if (entity.dst(camera) < DST)
 			entity.render(camera, consumer);
@@ -74,5 +88,6 @@ public class Renderer implements Disposable {
 		chunks.forEach(Chunk::dispose);
 		chunks.clear();
 		mesh.dispose();
+		texture.dispose();
 	}
 }

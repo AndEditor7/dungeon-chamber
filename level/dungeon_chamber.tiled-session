@@ -8,8 +8,8 @@
         "help"
     ],
     "expandedProjectPaths": [
-        "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels",
-        "."
+        ".",
+        "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels"
     ],
     "fileStates": {
         "": {
@@ -32,11 +32,11 @@
             }
         },
         "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels/test.tmx": {
-            "scale": 1.5,
+            "scale": 3,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 633,
-                "y": 908
+                "x": 639.5,
+                "y": 639.5
             }
         },
         "C:/Users/Owner/Documents/GitHub/dungeon-chamber/assets/levels/tiles.tsx": {
