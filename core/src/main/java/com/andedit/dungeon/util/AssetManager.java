@@ -1,4 +1,4 @@
-package com.andedit.dungeon.ui.util;
+package com.andedit.dungeon.util;
 
 import java.util.function.Consumer;
 

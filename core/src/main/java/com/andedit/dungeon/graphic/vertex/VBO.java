@@ -6,7 +6,7 @@ import static com.andedit.dungeon.util.Util.BUFFER;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.BufferUtils;
 
-public class Vbo20 implements Vertex {
+public class VBO implements Vertex {
 	
 	public int glDraw;
 
@@ -14,7 +14,7 @@ public class Vbo20 implements Vertex {
 	private boolean isBound;
 	private final VertContext context;
 
-	public Vbo20(VertContext context, int glDraw) {
+	public VBO(VertContext context, int glDraw) {
 		this.glDraw = glDraw;
 		this.context = context;
 

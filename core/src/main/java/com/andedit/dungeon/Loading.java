@@ -3,7 +3,7 @@ package com.andedit.dungeon;
 import static com.andedit.dungeon.Main.main;
 
 import com.andedit.dungeon.handle.Inputs;
-import com.andedit.dungeon.ui.util.AssetManager;
+import com.andedit.dungeon.util.AssetManager;
 import com.badlogic.gdx.ScreenAdapter;
 
 public class Loading extends ScreenAdapter {

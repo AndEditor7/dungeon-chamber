@@ -11,7 +11,7 @@ public interface Vertex extends Disposable {
 	void unbind();
 
 	static Vertex newVbo(VertContext context, int draw) {
-		return new Vbo20(context, draw);
+		return new VBO(context, draw);
 	}
 	
 	static Vertex newVa(VertContext context) {
@@ -19,6 +19,6 @@ public interface Vertex extends Disposable {
 	}
 	
 	static Vertex newVa(VertContext context, ByteBuffer buffer) {
-		return new Va20(context, buffer);
+		return new VA(context, buffer);
 	}
 }

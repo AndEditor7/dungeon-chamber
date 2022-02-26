@@ -13,6 +13,8 @@ public class Lights {
 	private final int[] locs = new int[LENTGH * AMOUNT];
 	private int lits;
 	
+	private Camera camera;
+	
 	public Lights(ShaderProgram shader) {
 		this.shader = shader;
 		StringBuilder sb = new StringBuilder();
@@ -32,6 +34,10 @@ public class Lights {
 		}
 	}
 	
+	public void setCamera(Camera camera) {
+		this.camera = camera;
+	}
+	
 	public void add(Vector2 pos, Color color, float size) {
 		add(pos, color, size, 0.5f);
 	}
@@ -42,6 +48,10 @@ public class Lights {
 	
 	public void add(Vector2 pos, Color color, float size, float z, float power) {
 		if (lits > LENTGH) {
+			return;
+		}
+		
+		if (!camera.frustum.sphereInFrustum(pos.x, pos.y, z, size)) {
 			return;
 		}
 		

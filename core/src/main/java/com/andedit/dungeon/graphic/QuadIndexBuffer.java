@@ -2,6 +2,7 @@ package com.andedit.dungeon.graphic;
 
 import static com.badlogic.gdx.Gdx.gl;
 
+import java.nio.Buffer;
 import java.nio.ShortBuffer;
 
 import com.andedit.dungeon.util.Util;
@@ -30,7 +31,7 @@ public final class QuadIndexBuffer
 			buffer.put((short)v);
 		}
 		
-		buffer.flip(); // Make it readable for GPU.
+		((Buffer)buffer).flip(); // Make it readable for GPU.
 		
 		// Upload the buffer to GPU.
 		bufferHandle = gl.glGenBuffer();

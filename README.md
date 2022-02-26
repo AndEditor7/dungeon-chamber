@@ -14,6 +14,7 @@ Useful Gradle tasks and flags:
 - `--daemon`: thanks to this flag, Gradle daemon will be used to run chosen tasks.
 - `--offline`: when using this flag, cached dependency archives will be used.
 - `--refresh-dependencies`: this flag forces validation of all dependencies. Useful for snapshot versions.
+- `android:lint`: performs Android project validation.
 - `build`: builds sources and archives of every project.
 - `cleanEclipse`: removes Eclipse project data.
 - `cleanIdea`: removes IntelliJ project data.

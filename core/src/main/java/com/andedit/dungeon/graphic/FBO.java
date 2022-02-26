@@ -17,8 +17,8 @@ import com.badlogic.gdx.utils.FloatArray;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class FBO implements Disposable {
-	public static final int WIDTH =  320*2; // 320
-	public static final int HEIGHT = 240*2; // 240
+	public static final int WIDTH  = 320; // 320
+	public static final int HEIGHT = 240; // 240
 	
 	private final FrameBuffer frame = new FrameBuffer(Format.RGB888, WIDTH, HEIGHT, true);
 	private final Vertex quad;

@@ -57,7 +57,7 @@ void main() {
 		vec2 tMax = vec2(tDelta.x * (steps.x > 0 ? 1.0 - fract(offset.x) : fract(offset.x)), tDelta.y * (steps.y > 0 ? 1.0 - fract(offset.y) : fract(offset.y)));
 		
 		bool stop = false;
-		for (int j = 0; j < 50; j++) {
+		for (int j = 0; j < 30; j++) {
 			vec4 tex = texture2D(map, vec2((float(pos.x)+0.5)/mapSize.x, (float(pos.y)+0.5)/mapSize.y));
 			if (tex.a > 0.1) {
 				stop = true;
@@ -87,8 +87,7 @@ void main() {
 	pix.rgb = pix.rgb * value;
 	
 	// Fog
-	//float z = gl_FragCoord.z / gl_FragCoord.w;
-	//float factor = (end - z) / (end - start);
-	//gl_FragColor = mix(pix, vec4(0.0), clamp(factor, 0.0, 1.0));
-	gl_FragColor = pix;
+	float z = gl_FragCoord.z / gl_FragCoord.w;
+	float factor = (fogEnd - z) / (fogEnd - fogStart);
+	gl_FragColor = mix(pix, vec4(0.0), clamp(factor, 0.0, 1.0));
 }

@@ -5,7 +5,7 @@ import com.andedit.dungeon.graphic.FastBatch;
 import com.andedit.dungeon.graphic.QuadIndexBuffer;
 import com.andedit.dungeon.handle.KeyListener;
 import com.andedit.dungeon.handle.Inputs;
-import com.andedit.dungeon.ui.util.AssetManager;
+import com.andedit.dungeon.util.AssetManager;
 import com.andedit.dungeon.util.Util;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -27,7 +27,8 @@ public class Main extends Base {
 	public void create() {
 		QuadIndexBuffer.init();
 		frame = new FBO();
-		stage = new Stage(view = new ScreenViewport(), batch = new FastBatch());
+		stage = new Stage(new ScreenViewport(), batch = new FastBatch());
+		stage.getViewport().update(FBO.WIDTH, FBO.HEIGHT, true);
 		Gdx.input.setInputProcessor(new InputMultiplexer(stage, inputs, Inputs.input));
 		asset = new AssetManager();
 		setScreen(new Loading(asset));
@@ -37,13 +38,13 @@ public class Main extends Base {
 	
 	@Override
 	public void render() {
-		Util.glClear();
-		//frame.begin();
-		super.render();
-		//frame.end();
-		
 		//Util.glClear();
-		//frame.draw();
+		frame.begin();
+		super.render();
+		frame.end();
+		
+		Util.glClear();
+		frame.draw();
 	}
 	
 	void setMenu() {
@@ -53,7 +54,7 @@ public class Main extends Base {
 	@Override
 	public void resize(int width, int height) {
 		super.resize(width, height);
-		//frame.resize(width, height);
+		frame.resize(width, height);
 	}
 
 	@Override

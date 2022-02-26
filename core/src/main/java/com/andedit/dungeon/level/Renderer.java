@@ -20,7 +20,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
 public class Renderer implements Disposable {
-	private static final float DST = 40 * 40;
+	private static final float DST = 20 * 20;
 	private final MeshBuilder consumer = new MeshBuilder();
 	private final Array<Chunk> chunks = new Array<>(false, 64);
 	private final Vertex mesh = Vertex.newVa(CONTEXT);
@@ -57,6 +57,8 @@ public class Renderer implements Disposable {
 		SHADER.setUniformMatrix("mat", camera.combined);
 		SHADER.setUniformf("mapSize", level.xSize, level.ySize);
 		SHADER.setUniformi("map", 2);
+		
+		lits.setCamera(camera);
 		for (Entity entity : level.getEntities()) {
 			entity.addLights(lits);
 		}

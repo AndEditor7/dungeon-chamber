@@ -4,6 +4,7 @@ import java.nio.ByteBuffer;
 import java.util.function.Consumer;
 
 import com.andedit.dungeon.graphic.QuadIndexBuffer;
+import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -25,6 +26,14 @@ public final class Util {
 
 	public static boolean isGL30() {
 		return Gdx.gl30 != null;
+	}
+	
+	public static boolean isMobile() {
+		return Gdx.app.getType() != ApplicationType.Desktop;
+	}
+	
+	public static boolean isDesktop() {
+		return Gdx.app.getType() == ApplicationType.Desktop;
 	}
 
 	/** Returns the width of the client area in logical pixels. */

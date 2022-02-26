@@ -1,14 +1,15 @@
 package com.andedit.dungeon.graphic.vertex;
 
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
 
 import com.badlogic.gdx.utils.BufferUtils;
 
-public class Va20 implements Vertex {
+public class VA implements Vertex {
 	final VertContext context;
 	final ByteBuffer buffer;
 	
-	public Va20(VertContext context, ByteBuffer buffer) {
+	public VA(VertContext context, ByteBuffer buffer) {
 		this.context = context;
 		this.buffer = buffer;
 	}
@@ -20,7 +21,7 @@ public class Va20 implements Vertex {
 
 	@Override
 	public void bind() {
-		buffer.clear();
+		((Buffer)buffer).clear();
 		context.setVertexAttributes(buffer);
 	}
 

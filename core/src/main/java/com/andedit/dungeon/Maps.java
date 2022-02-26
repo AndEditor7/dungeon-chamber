@@ -1,6 +1,6 @@
 package com.andedit.dungeon;
 
-import com.andedit.dungeon.ui.util.AssetManager;
+import com.andedit.dungeon.util.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;

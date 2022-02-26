@@ -9,7 +9,7 @@ buildscript {
 		maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
 	}
 	dependencies {
-
+		classpath "com.android.tools.build:gradle:$androidPluginVersion"
 
 		// This follows advice from https://blog.gradle.org/log4j-vulnerability
 		constraints {
@@ -29,7 +29,7 @@ allprojects {
 	apply plugin: 'idea'
 }
 
-configure(subprojects) {
+configure(subprojects - project(':android')) {
 	apply plugin: 'java-library'
 	sourceCompatibility = 1.8
 	compileJava {

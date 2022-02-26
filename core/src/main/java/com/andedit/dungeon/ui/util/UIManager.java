@@ -3,7 +3,6 @@ package com.andedit.dungeon.ui.util;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 public final class UIManager {
 	final ObjectMap<Class<? extends UI>, UI> map;
@@ -26,14 +25,10 @@ public final class UIManager {
 		for (UI ui : list) ui.bind(stage);
 	}
 
-	public void resize(Viewport view) {
-		for (UI ui : list) ui.resize(view);
-	}
-
 	@SuppressWarnings("unchecked")
 	public <T extends UI> T setUI(Class<T> clazz) {
 		final UI ui = map.get(clazz);
-		if (ui == null) throw new IllegalArgumentException("Invailed class: " + clazz.getSimpleName());
+		if (ui == null) throw new IllegalArgumentException("Invailed class: " + clazz.getName());
 
 		if (currentUI != null) currentUI.setVisible(false);
 		ui.setVisible(true);
@@ -58,6 +53,12 @@ public final class UIManager {
 	public void setVisible(boolean isVisible) {
 		if (currentUI != null) {
 			currentUI.setVisible(isVisible);
+		}
+	}
+	
+	public void update() {
+		if (currentUI != null) {
+			currentUI.update();
 		}
 	}
 	
