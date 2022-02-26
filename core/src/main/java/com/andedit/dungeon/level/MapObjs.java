@@ -4,7 +4,6 @@ import java.util.function.BiConsumer;
 
 import com.andedit.dungeon.entity.Atomic;
 import com.andedit.dungeon.entity.Goblin;
-import com.andedit.dungeon.graphic.Light;
 import com.andedit.dungeon.handle.ObjHandler;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
@@ -19,9 +18,6 @@ class MapObjs {
 		});
 		MAP.put("Goblin", (level, obj) -> {
 			level.addEntity(new Goblin(obj));
-		});
-		MAP.put("Light", (level, obj) -> {
-			level.addLight(new Light(obj));
 		});
 		MAP.put("Atomic", (level, obj) -> {
 			level.addEntity(new Atomic(obj));
