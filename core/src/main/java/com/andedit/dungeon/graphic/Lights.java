@@ -2,8 +2,8 @@ package com.andedit.dungeon.graphic;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.math.Frustum;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 
 public class Lights {
 	private static final int LENTGH = 100;
@@ -51,7 +51,7 @@ public class Lights {
 			return;
 		}
 		
-		if (!camera.frustum.sphereInFrustum(pos.x, pos.y, z, size)) {
+		if (!camera.frust(pos.x, pos.y, z, size)) {
 			return;
 		}
 		

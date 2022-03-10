@@ -1,9 +1,9 @@
-package com.andedit.dungeon.handle;
+package com.andedit.dungeon.handle.controller;
 
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.IntArray;
 
@@ -51,18 +51,35 @@ public class DesktopController extends InputAdapter implements Controller {
 
 	@Override
 	public float getLookYaw() {
-		float var = yawDelta;
-		yawDelta = 0;
-		return var;
+		float delta = yawDelta * 0.4f;
+		if (keysPressed.contains(Keys.LEFT)) {
+			delta += 4;
+		}
+		if (keysPressed.contains(Keys.RIGHT)) {
+			delta -= 4;
+		}
+		return delta;
+	}
+	
+	@Override
+	public boolean isUse() {
+		return keysPressed.notEmpty() || Gdx.input.isTouched();
 	}
 
 	@Override
-	public InputProcessor getProcessor() {
+	public InputProcessor getInput() {
 		return this;
 	}
 
 	@Override
 	public void reset() {
 		keysPressed.clear();
+		lastX = 0;
+		clear();
+	}
+	
+	@Override
+	public void clear() {
+		yawDelta = 0;
 	}
 }

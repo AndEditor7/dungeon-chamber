@@ -14,6 +14,7 @@ import com.andedit.dungeon.graphic.QuadIndexBuffer;
 import com.andedit.dungeon.graphic.vertex.Vertex;
 import com.andedit.dungeon.tile.entity.TileEntity;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.TexBinder;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.utils.Array;
@@ -25,6 +26,7 @@ public class Renderer implements Disposable {
 	private final Array<Chunk> chunks = new Array<>(false, 64);
 	private final Vertex mesh = Vertex.newVa(CONTEXT);
 	private final Lights lits = new Lights(SHADER);
+	private final TexBinder binder = new TexBinder();
 	private Texture texture;
 	private Level level;
 	
@@ -43,10 +45,11 @@ public class Renderer implements Disposable {
 		if (texture != null) {
 			texture.dispose();
 		}
+		
 		texture = new Texture(level.pixmap);
-		texture.bind(2);
-		texture	.unsafeSetFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		gl.glActiveTexture(GL20.GL_TEXTURE0);
+		binder.bind(texture);
+		texture.unsafeSetFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		binder.deactive();
 	}
 	
 	public void render(Camera camera) {
@@ -56,7 +59,7 @@ public class Renderer implements Disposable {
 		SHADER.bind();
 		SHADER.setUniformMatrix("mat", camera.combined);
 		SHADER.setUniformf("mapSize", level.xSize, level.ySize);
-		SHADER.setUniformi("map", 2);
+		SHADER.setUniformi("map", binder.unit);
 		
 		lits.setCamera(camera);
 		for (Entity entity : level.getEntities()) {
@@ -91,5 +94,6 @@ public class Renderer implements Disposable {
 		chunks.clear();
 		mesh.dispose();
 		texture.dispose();
+		binder.dispose();
 	}
 }

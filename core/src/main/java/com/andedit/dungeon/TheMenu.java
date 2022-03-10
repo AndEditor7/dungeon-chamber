@@ -5,6 +5,9 @@ import static com.andedit.dungeon.Main.main;
 import com.badlogic.gdx.ScreenAdapter;
 
 public class TheMenu extends ScreenAdapter {
+	
+	
+	
 	public TheMenu() {
 		
 	}

@@ -5,6 +5,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 abstract class Base extends Game {
@@ -41,6 +42,7 @@ abstract class Base extends Game {
 
 		stage.clear(); // Always clear UI when switching screen.
 		inputs.clear(); // Always clear the input processors.
+		Controllers.clearListeners();
 
 		screen.show();
 	}

@@ -35,6 +35,22 @@ public final class Util {
 	public static boolean isDesktop() {
 		return Gdx.app.getType() == ApplicationType.Desktop;
 	}
+	
+	public static boolean isCatched() {
+		return Gdx.input.isCursorCatched();
+	}
+	
+	public static int getMb() {
+		long java = Gdx.app.getJavaHeap();
+		if (isDesktop()) {
+			return (int)(java / 1024L / 1024L);
+		}
+		return (int)((java + Gdx.app.getNativeHeap()) / 1024L / 1024L);
+	}
+	
+	public static void setCatch(boolean isCatched) {
+		Gdx.input.setCursorCatched(isCatched);
+	}
 
 	/** Returns the width of the client area in logical pixels. */
 	public static int getW() {
@@ -60,7 +76,7 @@ public final class Util {
 	}
 	
 	public static float getShade(Color color, float scl) {
-		return Color.toFloatBits(color.r * scl, color.g * scl, color.b * scl, 1f);
+		return Color.toFloatBits(color.r * scl, color.g * scl, color.b * scl, 1);
 	}
 
 	/** Create a new change listener using java 8 lambda. */

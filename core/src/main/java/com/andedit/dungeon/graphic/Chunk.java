@@ -4,7 +4,6 @@ import static com.badlogic.gdx.Gdx.gl;
 import static com.andedit.dungeon.Assets.CONTEXT;
 
 import com.andedit.dungeon.Assets;
-import com.andedit.dungeon.VertInfo;
 import com.andedit.dungeon.graphic.vertex.Vertex;
 import com.andedit.dungeon.level.Level;
 import com.andedit.dungeon.tile.Tiles;
@@ -63,6 +62,16 @@ public class Chunk implements Vertex {
 	@Override
 	public void unbind() {
 		vertex.unbind();
+	}
+	
+	@Override
+	public void setDraw(int glDraw) {
+		vertex.setDraw(glDraw);
+	}
+
+	@Override
+	public int getDraw() {
+		return vertex.getDraw();
 	}
 
 	@Override

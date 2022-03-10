@@ -58,6 +58,10 @@ public class Level implements Disposable {
 		pixmap = new Pixmap(xSize, ySize, Format.Alpha);
 		pixmap.setBlending(Blending.None);
 		pixmap.setFilter(Filter.NearestNeighbour);
+		redraw();
+	}
+	
+	public void redraw() {
 		for (int x = 0; x < xSize; x++)
 		for (int y = 0; y < ySize; y++) {
 			if (Tiles.get(tiles[x][y]).isOpaque())

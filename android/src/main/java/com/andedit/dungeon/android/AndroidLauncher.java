@@ -15,6 +15,7 @@ public class AndroidLauncher extends AndroidApplication {
 		config.useImmersiveMode = true;
 		config.disableAudio = true;
 		config.hideStatusBar = true;
+		//config.useGL30 = true;
 		initialize(Main.main, config);
 	}
 }

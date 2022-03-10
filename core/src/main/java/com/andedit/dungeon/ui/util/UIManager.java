@@ -1,17 +1,24 @@
 package com.andedit.dungeon.ui.util;
 
+import com.andedit.dungeon.util.InputHolder;
+import com.andedit.dungeon.util.InputLock;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 
 public final class UIManager {
+	public final InputHolder input;
+	
 	final ObjectMap<Class<? extends UI>, UI> map;
 	final Array<UI> list;
+	boolean inputLock;
 	UI currentUI;
 
 	public UIManager() {
 		map = new ObjectMap<>();
 		list = new Array<>(32);
+		input = new InputHolder();
 	}
 
 	public void put(UI ui) {
@@ -33,6 +40,9 @@ public final class UIManager {
 		if (currentUI != null) currentUI.setVisible(false);
 		ui.setVisible(true);
 		currentUI = ui;
+		InputProcessor processor = ui.getInput();
+		inputLock = ui.isInputLock();
+		input.set(inputLock ? InputLock.of(processor) : processor);
 		return (T) ui;
 	}
 
@@ -66,5 +76,9 @@ public final class UIManager {
 		map.clear();
 		list.clear();
 		currentUI = null;
+	}
+
+	public boolean isInputLock() {
+		return inputLock;
 	}
 }

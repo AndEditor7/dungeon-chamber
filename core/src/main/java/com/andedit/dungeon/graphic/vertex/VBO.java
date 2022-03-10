@@ -6,15 +6,15 @@ import static com.andedit.dungeon.util.Util.BUFFER;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.BufferUtils;
 
+/** Vertex Buffer Object (VBO) */
 public class VBO implements Vertex {
 	
-	public int glDraw;
-
+	private int glDraw;
 	private int handle;
 	private boolean isBound;
 	private final VertContext context;
 
-	public VBO(VertContext context, int glDraw) {
+	VBO(VertContext context, int glDraw) {
 		this.glDraw = glDraw;
 		this.context = context;
 
@@ -45,6 +45,16 @@ public class VBO implements Vertex {
 		context.unVertexAttributes();
 		gl.glBindBuffer(GL20.GL_ARRAY_BUFFER, 0);
 		isBound = false;
+	}
+	
+	@Override
+	public void setDraw(int glDraw) {
+		this.glDraw = glDraw;
+	}
+
+	@Override
+	public int getDraw() {
+		return glDraw;
 	}
 	
 	@Override

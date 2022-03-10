@@ -3,19 +3,20 @@ package com.andedit.dungeon;
 import com.andedit.dungeon.graphic.FBO;
 import com.andedit.dungeon.graphic.FastBatch;
 import com.andedit.dungeon.graphic.QuadIndexBuffer;
-import com.andedit.dungeon.handle.KeyListener;
 import com.andedit.dungeon.handle.Inputs;
 import com.andedit.dungeon.util.AssetManager;
 import com.andedit.dungeon.util.Util;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.glutils.GLVersion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends Base {
 	public static final Main main = new Main();
+	public static API api = new API() {};
 	
 	public FastBatch batch;
 	public TheMenu menu;
@@ -34,6 +35,14 @@ public class Main extends Base {
 		setScreen(new Loading(asset));
 		Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
 		Gdx.gl.glCullFace(GL20.GL_BACK);
+		
+		GLVersion version = Gdx.graphics.getGLVersion();
+		System.out.println(version.getMajorVersion());
+		System.out.println(version.getMinorVersion());
+		System.out.println(version.getReleaseVersion());
+		System.out.println(version.getVendorString());
+		System.out.println(version.getRendererString());
+		System.out.println(version.getType());
 	}
 	
 	@Override

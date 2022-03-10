@@ -1,6 +1,7 @@
-package com.andedit.dungeon.handle;
+package com.andedit.dungeon.handle.controller;
 
 import com.andedit.dungeon.util.Util;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
@@ -55,14 +56,17 @@ public class TouchController extends InputAdapter implements Controller {
 
 	@Override
 	public float getLookYaw() {
-		float var = yawDelta;
-		yawDelta = 0;
-		return var;
+		return yawDelta;
 	}
 
 	@Override
-	public InputProcessor getProcessor() {
+	public InputProcessor getInput() {
 		return this;
+	}
+	
+	@Override
+	public boolean isUse() {
+		return Util.isMobile() && Gdx.input.isTouched();
 	}
 
 	@Override
@@ -71,5 +75,11 @@ public class TouchController extends InputAdapter implements Controller {
 		lookPointer = -1;
 		stratPos.setZero();
 		move.setZero();
+		clear();
+	}
+	
+	@Override
+	public void clear() {
+		yawDelta = 0;
 	}
 }
