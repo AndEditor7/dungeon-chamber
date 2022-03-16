@@ -4,15 +4,12 @@ import static com.badlogic.gdx.Gdx.gl;
 
 import com.andedit.dungeon.graphic.vertex.VertContext;
 import com.andedit.dungeon.graphic.vertex.Vertex;
-import com.andedit.dungeon.util.PixelPerfectViewport;
+import com.andedit.dungeon.input.PixelPerfectViewport;
 import com.andedit.dungeon.util.Util;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Pixmap.Format;
-import com.badlogic.gdx.graphics.TexBinder;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.VertexAttributes.Usage;
-import com.badlogic.gdx.graphics.g3d.utils.DefaultTextureBinder;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.GLFrameBuffer.FrameBufferBuilder;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
@@ -21,8 +18,11 @@ import com.badlogic.gdx.utils.FloatArray;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class FBO implements Disposable {
-	public static final int WIDTH  = 320; // 320
-	public static final int HEIGHT = 240; // 240
+	public static final int SCALE = 1;
+	public static final int WIDTH  = 320*SCALE; // 320
+	public static final int HEIGHT = 240*SCALE; // 240
+	
+	public final Viewport view = new PixelPerfectViewport(WIDTH, HEIGHT);
 	
 	private FrameBuffer frame;
 	private ColorRes colorRes;
@@ -30,7 +30,6 @@ public class FBO implements Disposable {
 	private final Vertex quad;
 	private final ShaderProgram shader;
 	private final TexBinder binder = new TexBinder();
-	private final Viewport view = new PixelPerfectViewport(WIDTH, HEIGHT);
 	
 	{
 		shader = Util.newShader("shaders/frame");
@@ -45,7 +44,7 @@ public class FBO implements Disposable {
 		
 		quad.setVertices(array.items, array.size, 0);
 		
-		setColorRes(ColorRes.RES8);		
+		setColorRes(Util.isDesktop() ? ColorRes.RES8 : ColorRes.RES5);		
 		shader.bind();
 		shader.setUniformf("size", WIDTH, HEIGHT);
 		shader.setUniformi("tex", binder.unit);
@@ -53,6 +52,7 @@ public class FBO implements Disposable {
 		gl.glActiveTexture(GL20.GL_TEXTURE0);
 		resize(Util.getW(), Util.getH());
 	}
+	
 	
 	public void setColorRes(ColorRes res) {
 		if (colorRes == res) {
@@ -76,11 +76,15 @@ public class FBO implements Disposable {
 	public void begin() {
 		frame.begin();
 		Util.glClear();
+		
+		if (colorRes.canDither())
 		gl.glEnable(GL20.GL_DITHER);
 	}
 	
 	public void end() {
 		frame.end();
+		
+		if (colorRes.canDither())
 		gl.glDisable(GL20.GL_DITHER);
 	}
 	

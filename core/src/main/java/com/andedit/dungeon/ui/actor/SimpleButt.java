@@ -37,6 +37,18 @@ public class SimpleButt extends Actor {
 		this(skin.get(name, ButtonStyle.class));
 	}
 	
+	public SimpleButt(@Null Drawable up) {
+		this(new ButtonStyle(up, null, null));
+	}
+
+	public SimpleButt(@Null Drawable up, @Null Drawable down) {
+		this(new ButtonStyle(up, down, null));
+	}
+
+	public SimpleButt(@Null Drawable up, @Null Drawable down, @Null Drawable checked) {
+		this(new ButtonStyle(up, down, checked));
+	}
+	
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		Drawable drawable = getBackgroundDrawable();

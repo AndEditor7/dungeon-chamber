@@ -1,19 +1,23 @@
-package com.andedit.dungeon.util;
+package com.andedit.dungeon.input;
 
+import com.andedit.dungeon.util.Resettable;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.utils.Null;
 
 public class InputHolder implements InputProcessor {
 	
 	@Null
-	public InputProcessor processor;
+	private InputProcessor processor;
 	
 	public void set(@Null InputProcessor processor) {
+		if (this.processor instanceof Resettable) {
+			((Resettable)this.processor).reset();
+		}
 		this.processor = processor;
 	}
 	
 	public void clear() {
-		this.processor = null;
+		set(null);
 	}
 
 	@Override

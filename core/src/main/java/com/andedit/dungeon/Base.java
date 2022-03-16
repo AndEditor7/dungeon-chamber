@@ -1,22 +1,29 @@
 package com.andedit.dungeon;
 
-import com.andedit.dungeon.handle.Inputs;
+import com.andedit.dungeon.graphic.StageUI;
+import com.andedit.dungeon.input.ControlMultiplexer;
+import com.andedit.dungeon.input.control.Inputs;
+import com.andedit.dungeon.util.Util;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.controllers.Controllers;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 
 abstract class Base extends Game {
 
-	public Stage stage;
+	public StageUI stage;
 	public final InputMultiplexer inputs;
+	public final ControlMultiplexer controls;
 	public int guiOff;
+	public boolean inputLock;
+	
 	protected Screen newScreen;
+	
+	private boolean isCatched;
 	
 	{
 		inputs = new InputMultiplexer();
+		controls = new ControlMultiplexer();
 	}
 
 	@Override
@@ -24,6 +31,7 @@ abstract class Base extends Game {
 		nextScreen();
 		super.render();
 		Gdx.gl.glUseProgram(0);
+		
 		stage.act();
 		stage.draw();
 		Gdx.gl.glUseProgram(0);
@@ -42,7 +50,9 @@ abstract class Base extends Game {
 
 		stage.clear(); // Always clear UI when switching screen.
 		inputs.clear(); // Always clear the input processors.
-		Controllers.clearListeners();
+		controls.clear();
+		setCatched(false);
+		inputLock = false;
 
 		screen.show();
 	}
@@ -56,6 +66,24 @@ abstract class Base extends Game {
 	@Override
 	public void setScreen(Screen screen) {
 		newScreen = screen;
+	}
+	
+	public boolean isCatched() {
+		return isCatched;
+	}
+	
+	public void setCatched(boolean isCatched) {
+		Gdx.input.setCursorCatched(isCatched);
+		this.isCatched = isCatched;
+	}
+	
+	public void setCursorPos(boolean centor) {
+		if (centor) {
+			Gdx.input.setCursorPosition(Util.getW()>>1, Util.getH()>>1);
+			stage.setCrossPos(Main.WIDTH>>1, Main.HEIGHT>>1);
+		} else {
+			Gdx.input.setCursorPosition(0, 0);
+		}
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package com.andedit.dungeon.handle;
+package com.andedit.dungeon.input.control;
 
 import com.andedit.dungeon.util.Util;
 import com.badlogic.gdx.Gdx;

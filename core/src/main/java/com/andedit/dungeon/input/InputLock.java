@@ -1,4 +1,4 @@
-package com.andedit.dungeon.util;
+package com.andedit.dungeon.input;
 
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;

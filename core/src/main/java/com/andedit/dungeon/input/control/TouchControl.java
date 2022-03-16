@@ -1,4 +1,4 @@
-package com.andedit.dungeon.handle.controller;
+package com.andedit.dungeon.input.control;
 
 import com.andedit.dungeon.util.Util;
 import com.badlogic.gdx.Gdx;
@@ -6,7 +6,7 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
 
-public class TouchController extends InputAdapter implements Controller {
+public class TouchControl extends InputAdapter implements Control {
 	
 	private int movePointer = -1;
 	private int lookPointer = -1;

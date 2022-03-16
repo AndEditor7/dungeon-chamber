@@ -57,8 +57,8 @@ public class Assets {
 		VertInfo.init(CONTEXT.getAttrs());
 		
 		BLANK  = new TextureRegion(GUI, 1, 121, 1, 1);
-		FRAME  = new NinePatch(new TextureRegion(GUI, 0, 124, 4, 4), 2, 2, 2, 2);
-		SQUARE = new NinePatch(new TextureRegion(GUI, 4, 124, 4, 4), 2, 2, 2, 2);
+		FRAME  = new NinePatch(new TextureRegion(GUI, 0, 124, 4, 4), 1, 1, 1, 1);
+		SQUARE = new NinePatch(new TextureRegion(GUI, 4, 124, 4, 4), 1, 1, 1, 1);
 		
 		getSkin();
 	}

@@ -8,6 +8,7 @@ import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -17,7 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.BufferUtils;
 
 public final class Util {
-	public static final ByteBuffer BUFFER = BufferUtils.newByteBuffer(QuadIndexBuffer.maxVertex * 28);
+	public static final ByteBuffer BUFFER = BufferUtils.newByteBuffer(QuadIndexBuffer.maxVertex * 24);
 
 	public static float lerp(float fromValue, float toValue, float progress, float clamp) {
 		final float delta = (toValue - fromValue) * progress;
@@ -36,20 +37,12 @@ public final class Util {
 		return Gdx.app.getType() == ApplicationType.Desktop;
 	}
 	
-	public static boolean isCatched() {
-		return Gdx.input.isCursorCatched();
-	}
-	
 	public static int getMb() {
 		long java = Gdx.app.getJavaHeap();
 		if (isDesktop()) {
 			return (int)(java / 1024L / 1024L);
 		}
 		return (int)((java + Gdx.app.getNativeHeap()) / 1024L / 1024L);
-	}
-	
-	public static void setCatch(boolean isCatched) {
-		Gdx.input.setCursorCatched(isCatched);
 	}
 
 	/** Returns the width of the client area in logical pixels. */
@@ -77,6 +70,16 @@ public final class Util {
 	
 	public static float getShade(Color color, float scl) {
 		return Color.toFloatBits(color.r * scl, color.g * scl, color.b * scl, 1);
+	}
+	
+	public static void scale(Actor actor, float scl) {
+		actor.setSize(actor.getWidth()*scl, actor.getHeight()*scl);
+	}
+	
+	public static TextureRegion flip(TextureRegion region, boolean x, boolean y) {
+		TextureRegion var = new TextureRegion(region);
+		var.flip(x, y);
+		return var;
 	}
 
 	/** Create a new change listener using java 8 lambda. */

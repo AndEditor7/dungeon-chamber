@@ -20,8 +20,6 @@ public class Lwjgl3Launcher {
 	private static Lwjgl3ApplicationConfiguration getDefaultConfiguration() {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setTitle("Dungeon Chamber");
-		
-		config.setBackBufferConfig(5, 5, 5, 1, 16, 0, 0);
 		config.enableGLDebugOutput(true, System.err);
 		//config.setOpenGLEmulation(GLEmulation.ANGLE_GLES20, 3, 1);
 

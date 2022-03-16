@@ -1,4 +1,4 @@
-package com.andedit.dungeon.handle.controller;
+package com.andedit.dungeon.input.control;
 
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
@@ -7,7 +7,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.IntArray;
 
-public class DesktopController extends InputAdapter implements Controller {
+public class DesktopControl extends InputAdapter implements Control {
 	
 	private final Vector2 move = new Vector2();
 	private final IntArray keysPressed = new IntArray(false, 16);

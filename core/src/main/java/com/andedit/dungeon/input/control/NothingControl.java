@@ -1,9 +1,9 @@
-package com.andedit.dungeon.handle.controller;
+package com.andedit.dungeon.input.control;
 
 import com.badlogic.gdx.math.Vector2;
 
-public class NothingController implements Controller {
-	public static final Controller INSTANCE = new NothingController();
+public class NothingControl implements Control {
+	public static final Control INSTANCE = new NothingControl();
 	
 	private static final Vector2 tmp = new Vector2();
 

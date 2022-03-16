@@ -1,6 +1,6 @@
 package com.andedit.dungeon.graphic.vertex;
 
-import java.nio.ByteBuffer;
+import java.nio.Buffer;
 
 import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.VertexAttributes;
@@ -13,7 +13,7 @@ public interface VertContext
 	
 	VertexAttributes getAttrs();
 	
-	default void setVertexAttributes(@Null ByteBuffer buffer) {
+	default void setVertexAttributes(@Null Buffer buffer) {
 		final VertexAttributes attributes = getAttrs();
 		final ShaderProgram shader = getShader();
 		for (int i = 0; i < attributes.size(); i++) {

@@ -1,6 +1,8 @@
-package com.badlogic.gdx.graphics;
+package com.andedit.dungeon.graphic;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.GLTexture;
 import com.badlogic.gdx.utils.Disposable;
 
 /** To keep organize the active texture slots. */

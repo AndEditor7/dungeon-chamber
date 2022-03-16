@@ -1,15 +1,14 @@
-package com.andedit.dungeon.handle.controller;
+package com.andedit.dungeon.input.control;
 
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.ControllerAdapter;
 import com.badlogic.gdx.controllers.ControllerListener;
 import com.badlogic.gdx.controllers.ControllerMapping;
-import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.IntArray;
 
-public class GameController extends ControllerAdapter implements com.andedit.dungeon.handle.controller.Controller {
+public class GameControl extends ControllerAdapter implements Control {
 	
 	private final Vector2 temp = new Vector2();
 	private final Vector2 move = new Vector2();

@@ -5,10 +5,9 @@ import static com.andedit.dungeon.Main.main;
 import com.andedit.dungeon.entity.Player;
 import com.andedit.dungeon.graphic.Camera;
 import com.andedit.dungeon.graphic.FBO;
-import com.andedit.dungeon.handle.KeyListener;
-import com.andedit.dungeon.handle.controller.Controller;
-import com.andedit.dungeon.handle.controller.ControllerManager;
-import com.andedit.dungeon.handle.controller.NothingController;
+import com.andedit.dungeon.input.control.Control;
+import com.andedit.dungeon.input.control.ControlManager;
+import com.andedit.dungeon.input.control.NothingControl;
 import com.andedit.dungeon.level.Level;
 import com.andedit.dungeon.level.Renderer;
 import com.andedit.dungeon.tile.TileColors;
@@ -17,13 +16,9 @@ import com.andedit.dungeon.ui.GameUI;
 import com.andedit.dungeon.ui.OptionUI;
 import com.andedit.dungeon.ui.util.UI;
 import com.andedit.dungeon.ui.util.UIManager;
-import com.andedit.dungeon.util.RamTest;
 import com.andedit.dungeon.util.Util;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
 
 public class TheGame extends ScreenAdapter {
 	
@@ -33,10 +28,8 @@ public class TheGame extends ScreenAdapter {
 	private final Level level;
 	private final Renderer render = new Renderer();
 	private final Player player = new Player(camera, this);
-	private final ControllerManager controls = new ControllerManager();
+	private final ControlManager controls = new ControlManager();
 	private boolean dispose;
-
-	public final Array<RamTest> tests = new Array<>(512);
 	
 	public TheGame() {
 		camera.viewportWidth  = FBO.WIDTH;
@@ -61,9 +54,8 @@ public class TheGame extends ScreenAdapter {
 		manager.bind(main.stage);
 		manager.setUI(GameUI.class);
 		main.inputs.addProcessor(manager.input);
-		//main.inputs.addProcessor(new KeyListener(Keys.ESCAPE, Gdx.app::exit));
-		controls.init(main.inputs);
-		Util.setCatch(true);
+		main.controls.addProcessor(manager.control);
+		controls.init();
 	}
 	
 	private static final float STEP = 0.017f;
@@ -74,13 +66,6 @@ public class TheGame extends ScreenAdapter {
 		controls.update();
 		camera.yaw += getController().getLookYaw() * 0.5f;
 		manager.update();
-
-		/**
-		if (Gdx.input.justTouched()) {
-			tests.add(new RamTest());
-		}
-		tests.forEach(RamTest::update);
-		*/
 		
 		time += delta;
 		do {
@@ -100,7 +85,6 @@ public class TheGame extends ScreenAdapter {
 	@Override
 	public void hide() {
 		dispose();
-		Gdx.input.setCursorCatched(false);
 	}
 	
 	@Override
@@ -112,15 +96,12 @@ public class TheGame extends ScreenAdapter {
 		dispose = true;
 	}
 	
-	public Controller getController() {
-		if (manager.isInputLock()) {
-			return NothingController.INSTANCE;
-		}
-		return controls.current;
+	public Control getController() {
+		return main.inputLock ? NothingControl.INSTANCE : controls.current;
 	}
 	
-	public void setUI(Class<? extends UI> type) {
+	public <T extends UI> T setUI(Class<T> type) {
 		controls.reset();
-		manager.setUI(type);
+		return manager.setUI(type);
 	}
 }

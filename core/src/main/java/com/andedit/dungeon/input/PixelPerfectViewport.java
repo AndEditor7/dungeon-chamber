@@ -1,4 +1,4 @@
-package com.andedit.dungeon.util;
+package com.andedit.dungeon.input;
 
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
