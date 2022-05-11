@@ -83,9 +83,9 @@ void main() {
 		}
 		
 		float len3D = distance(start, end);
-		float val = pow((lit.size - len3D) / lit.size, 2.0);
+		float val = clamp(pow((lit.size - len3D) / lit.size, 2.0), 0.0, 1.0);
 		value += lit.color * val;
-		value += pow(max(dot(direct, reflect(normalize(end - (start + (normal * 0.005))), normal)), 0.0), 10.0) * val * lit.color * 0.2;
+		value += pow(max(dot(direct, reflect(normalize(end - start), normal)), 0.0), 10.0) * val * lit.color * 0.2;
 	}
 	
 	pix.rgb = pix.rgb * value;
