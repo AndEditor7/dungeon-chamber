@@ -3,7 +3,6 @@ package com.andedit.dungeon.util;
 import java.nio.ByteBuffer;
 import java.util.function.Consumer;
 
-import com.andedit.dungeon.graphic.QuadIndexBuffer;
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -18,7 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.BufferUtils;
 
 public final class Util {
-	public static final ByteBuffer BUFFER = BufferUtils.newByteBuffer(QuadIndexBuffer.maxVertex * 24);
+	public static final ByteBuffer BUFFER = BufferUtils.newByteBuffer(1048576);
 
 	public static float lerp(float fromValue, float toValue, float progress, float clamp) {
 		final float delta = (toValue - fromValue) * progress;
@@ -58,6 +57,11 @@ public final class Util {
 	public static float modAngle(float angle) {
 		float mod = angle % 360f;
 		return MathUtils.clamp(mod < 0f ? mod + 360f : mod, 0f, 360f);
+	}
+	
+	public static float packNorm(float x, float y, float z) {
+		final float a = 0.5f;
+		return Color.toFloatBits((x*a)+a, (y*a)+a, (z*a)+a, 1f);
 	}
 
 	public static void glClear() {

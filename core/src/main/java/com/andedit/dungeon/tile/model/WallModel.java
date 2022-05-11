@@ -13,6 +13,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class WallModel implements Model {
 	
 	private final TextureRegion region;
+	private static final float NORTH = Util.packNorm(0, -1, 0);
+	private static final float SOUTH = Util.packNorm(0, 1, 0);
+	private static final float EAST =  Util.packNorm(1, 0, 0);
+	private static final float WEST =  Util.packNorm(-1, 0, 0);
 	
 	public WallModel(int xIndex, int yIndex) {
 		region = Assets.getTileReg(xIndex, yIndex);
@@ -27,6 +31,7 @@ public class WallModel implements Model {
 		
 		// north y-
 		if (!level.getTile(pos.set(x, y-1)).isOpaque(level, pos)) {
+			consumer.setNormal(NORTH);
 			consumer.vert1(1+x, 0+y, 0);
 			consumer.vert2(1+x, 0+y, 1);
 			consumer.vert3(0+x, 0+y, 1);
@@ -35,6 +40,7 @@ public class WallModel implements Model {
 		
 		// south y+
 		if (!level.getTile(pos.set(x, y+1)).isOpaque(level, pos)) {
+			consumer.setNormal(SOUTH);
 			consumer.vert1(0+x, 1+y, 0);
 			consumer.vert2(0+x, 1+y, 1);
 			consumer.vert3(1+x, 1+y, 1);
@@ -44,6 +50,7 @@ public class WallModel implements Model {
 		consumer.setColor(Util.getShade(color, 0.85f));		
 		// east x+
 		if (!level.getTile(pos.set(x+1, y)).isOpaque(level, pos)) {
+			consumer.setNormal(EAST);
 			consumer.vert1(1+x, 1+y, 0);
 			consumer.vert2(1+x, 1+y, 1);
 			consumer.vert3(1+x, 0+y, 1);
@@ -52,6 +59,7 @@ public class WallModel implements Model {
 		
 		// west x-
 		if (!level.getTile(pos.set(x-1, y)).isOpaque(level, pos)) {
+			consumer.setNormal(WEST);
 			consumer.vert1(0+x, 0+y, 0);
 			consumer.vert2(0+x, 0+y, 1);
 			consumer.vert3(0+x, 1+y, 1);

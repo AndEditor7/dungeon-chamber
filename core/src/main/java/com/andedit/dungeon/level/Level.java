@@ -67,6 +67,7 @@ public class Level implements Disposable {
 			if (Tiles.get(tiles[x][y]).isOpaque())
 				pixmap.drawPixel(x, y, -1);
 		}
+		
 	}
 	
 	public void update() {

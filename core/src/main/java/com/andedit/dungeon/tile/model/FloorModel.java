@@ -12,6 +12,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class FloorModel implements Model {
 	
+	private static final float UP = Util.packNorm(0, 0, 1);
+	private static final float DOWN = Util.packNorm(0, 0, -1);
+	
 	private final TextureRegion floor, ceil;
 	
 	public FloorModel(int xIndex, int yIndex) {
@@ -30,11 +33,13 @@ public class FloorModel implements Model {
 		consumer.setRegion(floor);
 		consumer.setColor(color);
 				
+		consumer.setNormal(UP);
 		consumer.vert1(0+x, 1+y, 0);
 		consumer.vert2(0+x, 0+y, 0);
 		consumer.vert3(1+x, 0+y, 0);
 		consumer.vert4(1+x, 1+y, 0);
 		
+		consumer.setNormal(DOWN);
 		consumer.setColor(Util.getShade(color, 0.9f));
 		consumer.setRegion(ceil);
 		consumer.vert1(0+x, 0+y, 1);

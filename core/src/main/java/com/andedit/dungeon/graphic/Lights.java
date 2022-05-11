@@ -2,7 +2,6 @@ package com.andedit.dungeon.graphic;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
-import com.badlogic.gdx.math.Frustum;
 import com.badlogic.gdx.math.Vector2;
 
 public class Lights {

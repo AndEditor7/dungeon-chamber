@@ -51,6 +51,7 @@ public class Assets {
 		CONTEXT = VertContext.of(SHADER,
 			new VertexAttribute(Usage.Position, 3, "pos0"),
 			new VertexAttribute(Usage.ColorPacked, 4, "color0"),
+			new VertexAttribute(Usage.ColorPacked, 4, "normal0"),
 			new VertexAttribute(Usage.TextureCoordinates, 2, "uv0")
 		);
 		

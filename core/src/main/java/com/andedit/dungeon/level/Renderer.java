@@ -58,6 +58,7 @@ public class Renderer implements Disposable {
 		TEXS.bind();
 		SHADER.bind();
 		SHADER.setUniformMatrix("mat", camera.combined);
+		SHADER.setUniformf("camPos", camera.position);
 		SHADER.setUniformf("mapSize", level.xSize, level.ySize);
 		SHADER.setUniformi("map", binder.unit);
 		

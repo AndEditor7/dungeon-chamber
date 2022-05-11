@@ -18,11 +18,10 @@ uniform sampler2D tex;
 uniform sampler2D map;
 uniform Light lits[100];
 uniform int size;
-uniform vec3 camPos;
 
 const float fogStart = 10.0;
 const float fogEnd = 7.0;
-const float off = 0.001;
+const float off = 0.002;
 const float gamma = 2.2;
 const float brightness = 0.05;
 
@@ -32,7 +31,6 @@ void main() {
 	if (pix.a < 0.1) discard; // Don't draw the transparent pixel.
 	pix.rgb *= color;
 	pix.a = 1.0;
-	vec3 direct = normalize(pos - camPos);
 		
 	// Tile Ray-tracing Lighting
 	vec3 value = vec3(brightness); 
@@ -50,7 +48,7 @@ void main() {
 			continue;
 		}
 		
-		vec2 offset = vec2(start.xy + (normal.xy * off));
+		vec2 offset = vec2(start.xy + (dir * off));
 		float rad = len2D + off;
 		
 		ivec2 pos = ivec2(offset);
@@ -61,8 +59,8 @@ void main() {
 		
 		bool stop = false;
 		for (int j = 0; j < 30; j++) {
-			float tile = texture2D(map, vec2((float(pos.x)+0.5)/mapSize.x, (float(pos.y)+0.5)/mapSize.y)).a;
-			if (tile > 0.1) {
+			vec4 tex = texture2D(map, vec2((float(pos.x)+0.5)/mapSize.x, (float(pos.y)+0.5)/mapSize.y));
+			if (tex.a > 0.1) {
 				stop = true;
 				break;
 			}			
@@ -83,9 +81,8 @@ void main() {
 		}
 		
 		float len3D = distance(start, end);
-		float val = pow((lit.size - len3D) / lit.size, 2.0);
-		value += lit.color * val;
-		value += pow(max(dot(direct, reflect(normalize(end - (start + (normal * 0.005))), normal)), 0.0), 10.0) * val * lit.color * 0.2;
+		float val = (lit.size - len3D) / lit.size;
+		value += lit.color * pow(clamp(val, 0.0, 1.0), 2.0);
 	}
 	
 	pix.rgb = pix.rgb * value;

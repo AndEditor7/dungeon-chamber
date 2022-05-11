@@ -2,7 +2,7 @@ package com.andedit.dungeon.level;
 
 import java.util.function.BiConsumer;
 
-import com.andedit.dungeon.entity.Atomic;
+import com.andedit.dungeon.entity.Orbs;
 import com.andedit.dungeon.entity.Goblin;
 import com.andedit.dungeon.handle.ObjHandler;
 import com.badlogic.gdx.maps.MapObject;
@@ -20,7 +20,7 @@ class MapObjs {
 			level.addEntity(new Goblin(obj));
 		});
 		MAP.put("Atomic", (level, obj) -> {
-			level.addEntity(new Atomic(obj));
+			level.addEntity(new Orbs(obj));
 		});
 	}
 	

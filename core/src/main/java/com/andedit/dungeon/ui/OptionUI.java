@@ -66,7 +66,7 @@ public class OptionUI extends BaseUI {
 		image.setPosition(36, h, Align.topLeft);
 		add(image);
 		
-		Label label = new Label("Options", Assets.SKIN);
+		Label label = new Label("Graphic", Assets.SKIN);
 		label.setFontScale(3);
 		label.pack();
 		label.setPosition(w/2, h-16, Align.top);

@@ -2,6 +2,7 @@ package com.andedit.dungeon.graphic;
 
 import com.andedit.dungeon.graphic.SubDivider.Vert;
 import com.andedit.dungeon.graphic.vertex.Vertex;
+import com.andedit.dungeon.util.Util;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
@@ -15,6 +16,7 @@ public class MeshBuilder {
 	private final FloatArray array = new FloatArray(512);
 	TextureRegion region;
 	private float color;
+	private float normal;
 	public final SubDivider divider = new SubDivider(this);
 	
 	public void setRegion(TextureRegion region) {
@@ -29,28 +31,32 @@ public class MeshBuilder {
 		this.color = color.toFloatBits();
 	}
 	
-	public void setColor(Vector3 color) {
-		this.color = Color.toFloatBits(color.x, color.y, color.z, 1f);
+	public void setNormal(float normal) {
+		this.normal = normal;
+	}
+	
+	public void setNormal(float x, float y, float z) {
+		this.normal = Util.packNorm(x, y, z);
 	}
 	
 	public void vert1(float x, float y, float z) {
-		array.add(x, y, z);
-		array.add(color, region.getU2(), region.getV2());
+		array.add(x, y, z, color);
+		array.add(normal, region.getU2(), region.getV2());
 	}
 	
 	public void vert2(float x, float y, float z) {
-		array.add(x, y, z);
-		array.add(color, region.getU2(), region.getV());
+		array.add(x, y, z, color);
+		array.add(normal, region.getU2(), region.getV());
 	}
 	
 	public void vert3(float x, float y, float z) {
-		array.add(x, y, z);
-		array.add(color, region.getU(), region.getV());
+		array.add(x, y, z, color);
+		array.add(normal, region.getU(), region.getV());
 	}
 	
 	public void vert4(float x, float y, float z) {
-		array.add(x, y, z);
-		array.add(color, region.getU(), region.getV2());
+		array.add(x, y, z, color);
+		array.add(normal, region.getU(), region.getV2());
 	}
 	
 	void vertex(Vert vert) {
@@ -58,18 +64,20 @@ public class MeshBuilder {
 	}
 	
 	public void vertex(float x, float y, float z, float u, float v) {
-		array.add(x, y, z);
-		array.add(color, u, v);
+		array.add(x, y, z, color);
+		array.add(normal, u, v);
 	}
 	
 	public void vertex(float x, float y, float z, float c, float u, float v) {
 		array.add(x, y, z);
-		array.add(c, u, v);
+		array.add(c, normal, u, v);
 	}
 	
 	public void draw(Camera camera, float x, float y, float z) {
 		Vector3 up = camera.upward;
 		Vector3 dw = camera.down;
+		Vector3 dir = camera.direction;
+		normal = Util.packNorm(-dir.x, -dir.y, -dir.z);
 		vert1(x+dw.x, y+dw.y, z+dw.z);
 		vert2(x+up.x, y+up.y, z+up.z);
 		vert3(x-dw.x, y-dw.y, z-dw.z);

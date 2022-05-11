@@ -12,7 +12,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
-public class Atomic extends Entity {
+public class Orbs extends Entity {
 	
 	private static final TextureRegion REGION = Assets.getTileReg(0, 14);
 	private static final float off = 1.5f;
@@ -23,7 +23,7 @@ public class Atomic extends Entity {
 	
 	private float angle;
 	
-	public Atomic(ObjHandler obj) {
+	public Orbs(ObjHandler obj) {
 		super(obj);
 	}
 	
@@ -40,7 +40,7 @@ public class Atomic extends Entity {
 		float x, y;
 		consumer.setRegion(REGION);
 		Vector2 pos = getPos();
-		float off = Atomic.off + 0.01f;
+		float off = Orbs.off + 0.01f;
 		
 		consumer.setColor(RED);
 		x = (MathUtils.sinDeg(direct)*off) + pos.x;
