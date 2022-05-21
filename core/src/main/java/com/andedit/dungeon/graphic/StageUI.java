@@ -11,17 +11,22 @@ import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.ControllerListener;
 import com.badlogic.gdx.controllers.ControllerMapping;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.GridPoint2;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class StageUI extends Stage implements ControllerListener {
+	
+	public Actor overlap;
 	
 	private final Viewport view;
 	private final GridPoint2 pos = new GridPoint2();
@@ -30,6 +35,8 @@ public class StageUI extends Stage implements ControllerListener {
 	private final Sprite cross = new Sprite();
 	private boolean isPress;
 	private boolean isController;
+
+	private ShapeRenderer debugShapes;
 	
 	public StageUI(FBO frame) {
 		super(newView(), new FastBatch());
@@ -108,11 +115,32 @@ public class StageUI extends Stage implements ControllerListener {
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		getRoot().draw(batch, 1);
+		if (overlap != null) {
+			overlap.draw(batch, Float.NaN);
+		}
 		if (isController && !main.isCatched()) {
 			if (cross.getTexture() != null)
 				cross.draw(batch);
 		}
 		batch.end();
+		
+		if (isDebugAll()) drawDebug();
+	}
+
+	private void drawDebug () {
+		if (debugShapes == null) {
+			debugShapes = new ShapeRenderer();
+			debugShapes.setAutoShapeType(true);
+		}
+
+		getRoot().debugAll();
+
+		Gdx.gl.glEnable(GL20.GL_BLEND);
+		debugShapes.setProjectionMatrix(getViewport().getCamera().combined);
+		debugShapes.begin();
+		getRoot().drawDebug(debugShapes);
+		debugShapes.end();
+		Gdx.gl.glDisable(GL20.GL_BLEND);
 	}
 	
 	@Override
@@ -192,6 +220,9 @@ public class StageUI extends Stage implements ControllerListener {
 	public void dispose() {
 		super.dispose();
 		getBatch().dispose();
+		if (debugShapes != null) {
+			debugShapes.dispose();
+		}
 	}
 
 	@Override

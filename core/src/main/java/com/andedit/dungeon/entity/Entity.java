@@ -11,7 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Null;
 
-public class Entity {
+public abstract class Entity {
 	public final CollisionBox box = new CollisionBox();
 	public final Vector2 vel = new Vector2();
 	public boolean onCollide;
@@ -20,13 +20,12 @@ public class Entity {
 	public Level level;
 	
 	protected boolean isDead;
+	public boolean collision = true;
 	
 	private final Vector2 pos = new Vector2();
 	private final TilePos tilePos = new TilePos();
 	
-	/** Soon will be removed */
-	@Deprecated
-	Entity() {
+	public Entity() {
 	}
 	
 	public Entity(ObjHandler obj) {

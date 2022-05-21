@@ -1,5 +1,6 @@
 package com.andedit.dungeon;
 
+import com.andedit.dungeon.console.command.GameCmds;
 import com.andedit.dungeon.graphic.FBO;
 import com.andedit.dungeon.graphic.QuadIndexBuffer;
 import com.andedit.dungeon.graphic.StageUI;
@@ -9,9 +10,11 @@ import com.andedit.dungeon.util.AssetManager;
 import com.andedit.dungeon.util.Util;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.GLVersion;
+import com.strongjoshua.console.CommandExecutor;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends Base {
@@ -19,11 +22,9 @@ public class Main extends Base {
 	public static final int HEIGHT = 240;
 	
 	public static final Main main = new Main();
-	public static API api = new API() {};
+	public static API api;
 	
-	public TheMenu menu;
-	
-	private FBO frame;
+	public FBO frame;
 	private AssetManager asset;
 
 	@Override
@@ -41,13 +42,13 @@ public class Main extends Base {
 		Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
 		Gdx.gl.glCullFace(GL20.GL_BACK);
 		
-		GLVersion version = Gdx.graphics.getGLVersion();
-		System.out.println(version.getMajorVersion());
-		System.out.println(version.getMinorVersion());
-		System.out.println(version.getReleaseVersion());
-		System.out.println(version.getVendorString());
-		System.out.println(version.getRendererString());
-		System.out.println(version.getType());
+//		GLVersion version = Gdx.graphics.getGLVersion();
+//		System.out.println(version.getMajorVersion());
+//		System.out.println(version.getMinorVersion());
+//		System.out.println(version.getReleaseVersion());
+//		System.out.println(version.getVendorString());
+//		System.out.println(version.getRendererString());
+//		System.out.println(version.getType());
 	}
 	
 	@Override
@@ -59,10 +60,6 @@ public class Main extends Base {
 		
 		Util.glClear();
 		frame.draw();
-	}
-	
-	void setMenu() {
-		setScreen(menu = new TheMenu());
 	}
 	
 	@Override

@@ -22,7 +22,7 @@ uniform vec3 camPos;
 
 const float fogStart = 10.0;
 const float fogEnd = 7.0;
-const float off = 0.001;
+const float off = 0.0001;
 const float gamma = 2.2;
 const float brightness = 0.05;
 

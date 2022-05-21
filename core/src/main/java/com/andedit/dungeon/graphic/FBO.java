@@ -1,7 +1,9 @@
 package com.andedit.dungeon.graphic;
 
+import static com.andedit.dungeon.Main.main;
 import static com.badlogic.gdx.Gdx.gl;
 
+import com.andedit.dungeon.graphic.FBO.ColorRes;
 import com.andedit.dungeon.graphic.vertex.VertContext;
 import com.andedit.dungeon.graphic.vertex.Vertex;
 import com.andedit.dungeon.input.PixelPerfectViewport;
@@ -13,6 +15,7 @@ import com.badlogic.gdx.graphics.VertexAttributes.Usage;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.GLFrameBuffer.FrameBufferBuilder;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.FloatArray;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -25,7 +28,7 @@ public class FBO implements Disposable {
 	public final Viewport view = new PixelPerfectViewport(WIDTH, HEIGHT);
 	
 	private FrameBuffer frame;
-	private ColorRes colorRes;
+	private ColorRes colorRes = Util.isDesktop() ? ColorRes.RES8 : ColorRes.RES5;
 	
 	private final Vertex quad;
 	private final ShaderProgram shader;
@@ -44,7 +47,8 @@ public class FBO implements Disposable {
 		
 		quad.setVertices(array.items, array.size, 0);
 		
-		setColorRes(Util.isDesktop() ? ColorRes.RES8 : ColorRes.RES5);		
+		build();
+		
 		shader.bind();
 		shader.setUniformf("size", WIDTH, HEIGHT);
 		shader.setUniformi("tex", binder.unit);
@@ -53,19 +57,21 @@ public class FBO implements Disposable {
 		resize(Util.getW(), Util.getH());
 	}
 	
-	
 	public void setColorRes(ColorRes res) {
 		if (colorRes == res) {
 			return;
 		}
-		
+		colorRes = res;
+		build();
+	}
+	
+	public void build() {
 		if (frame != null) {
 			frame.dispose();
 		}
 		
-		colorRes = res;
 		FrameBufferBuilder builder = new FrameBufferBuilder(WIDTH, HEIGHT);
-		builder.addColorTextureAttachment(GL20.GL_RGBA, GL20.GL_RGBA, res.glType);
+		builder.addColorTextureAttachment(GL20.GL_RGBA, GL20.GL_RGBA, colorRes.glType);
 		builder.addBasicDepthRenderBuffer();
 		frame = builder.build();
 		binder.bind(frame.getColorBufferTexture());
@@ -130,6 +136,15 @@ public class FBO implements Disposable {
 		
 		public ColorRes toEnum(int ordinal) {
 			return VALUES[ordinal];
+		}
+		
+		public static ColorRes getColorRes(int res) {
+			switch (res) {
+			case 4: return ColorRes.RES4;
+			case 5: return ColorRes.RES5;
+			case 8: return ColorRes.RES8;
+			default: return null;
+			}
 		}
 	}
 }

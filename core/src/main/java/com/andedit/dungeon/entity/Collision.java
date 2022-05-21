@@ -40,7 +40,8 @@ interface Collision<T extends Entity> {
 	default void blockHandle(T entity, TilePos pos) {
 		Level level = entity.level;
 		Tile tile = level.getTile(pos);
-		tile.addCollisions(level, pos, BOXES, POOL);
+		if (entity.collision) 
+			tile.addCollisions(level, pos, BOXES, POOL);
 		tile.onCollide(entity, pos);
 	}
 	

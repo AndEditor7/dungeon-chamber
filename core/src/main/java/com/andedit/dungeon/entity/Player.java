@@ -10,7 +10,6 @@ public class Player extends LiveEntity {
 	private final Camera camera;
 	private final TheGame game;
 	
-	@SuppressWarnings("deprecation")
 	public Player(Camera camera, TheGame game) {
 		this.camera = camera;
 		this.game = game;

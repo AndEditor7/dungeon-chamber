@@ -53,6 +53,19 @@ public final class Util {
 	public static int getH() {
 		return Gdx.graphics.getHeight();
 	}
+	
+	public static boolean isBlank(String string) {
+		final int len = string.length();
+		if (len == 0) {
+			return true;
+		}
+		for (int i = 0; i < len; i++) {
+			if (!Character.isWhitespace(string.charAt(i))) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	public static float modAngle(float angle) {
 		float mod = angle % 360f;

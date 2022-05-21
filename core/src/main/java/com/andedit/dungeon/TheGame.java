@@ -2,6 +2,7 @@ package com.andedit.dungeon;
 
 import static com.andedit.dungeon.Main.main;
 
+import com.andedit.dungeon.console.command.GameCmds;
 import com.andedit.dungeon.entity.Player;
 import com.andedit.dungeon.graphic.Camera;
 import com.andedit.dungeon.graphic.FBO;
@@ -25,9 +26,10 @@ public class TheGame extends ScreenAdapter {
 	public final UIManager manager = new UIManager();
 	public final Camera camera = new Camera();
 	
-	private final Level level;
+	public final Level level;
+	public final Player player = new Player(camera, this);
+	
 	private final Renderer render = new Renderer();
-	private final Player player = new Player(camera, this);
 	private final ControlManager controls = new ControlManager();
 	private boolean dispose;
 	
@@ -56,9 +58,11 @@ public class TheGame extends ScreenAdapter {
 		main.inputs.addProcessor(manager.input);
 		main.controls.addProcessor(manager.control);
 		controls.init();
+		main.setCommand(new GameCmds(this));
 	}
 	
 	private static final float STEP = 0.017f;
+	public float speed = 1;
 	private float time;
 	
 	@Override
@@ -70,9 +74,9 @@ public class TheGame extends ScreenAdapter {
 		time += delta;
 		do {
 			level.update();
-			time -= STEP;
-		} while (time >= STEP);
-		time %= STEP;
+			time -= STEP / speed;
+		} while (time >= STEP / speed);
+		time %= STEP / speed;
 		
 		controls.clear();
 		camera.updateRotation();
@@ -97,7 +101,7 @@ public class TheGame extends ScreenAdapter {
 	}
 	
 	public Control getController() {
-		return main.inputLock ? NothingControl.INSTANCE : controls.current;
+		return main.isInputLock() ? NothingControl.INSTANCE : controls.current;
 	}
 	
 	public <T extends UI> T setUI(Class<T> type) {

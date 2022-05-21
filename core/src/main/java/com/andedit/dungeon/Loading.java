@@ -25,7 +25,8 @@ public class Loading extends ScreenAdapter {
 			Inputs.clear();
 			Statics.init();
 			main.stage.setCrossTex(new TextureRegion(Assets.GUI, 119, 119, 9, 9));
-			main.setMenu();
+			main.loadConsole();
+			main.setScreen(new TheMenu());
 		}
 	}
 }

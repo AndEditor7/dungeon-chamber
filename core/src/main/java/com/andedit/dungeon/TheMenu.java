@@ -14,7 +14,7 @@ public class TheMenu extends ScreenAdapter {
 	
 	@Override
 	public void show() {
-		//main.inputs.addProcessor(new KeyListener(Keys.ESCAPE, () -> Gdx.app.exit()));
+		//main.inputs.addProcessor(new KeyListener(Keys.ESCAPE, Gdx.app::exit));
 		main.setScreen(new TheGame());
 	}
 	
