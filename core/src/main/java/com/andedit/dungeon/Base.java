@@ -1,6 +1,7 @@
 package com.andedit.dungeon;
 
-import com.andedit.dungeon.console.AndConsole;
+import com.andedit.console.command.Commands;
+import com.andedit.dungeon.console.Console;
 import com.andedit.dungeon.console.command.MainCmds;
 import com.andedit.dungeon.graphic.StageUI;
 import com.andedit.dungeon.input.ControlMultiplexer;
@@ -12,12 +13,11 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.ObjectSet;
-import com.strongjoshua.console.CommandExecutor;
 
 abstract class Base extends Game {
 
 	public StageUI stage;
-	public AndConsole console;
+	public Console console;
 	public final InputMultiplexer inputs;
 	public final ControlMultiplexer controls;
 	public TheMenu menu;
@@ -77,8 +77,8 @@ abstract class Base extends Game {
 
 		
 		if (console != null) {
-			console.setVisible(false);
-			console.setCommandExecutor(new MainCmds());
+			console.setFocus(false);
+			console.setCommands(new MainCmds());
 			stage.addActor(console.field);
 		}
 		
@@ -127,12 +127,12 @@ abstract class Base extends Game {
 	}
 	
 	protected void loadConsole() {
-		console = new AndConsole();
+		console = new Console();
 		stage.overlap = console.field;
 	}
 	
 	public void showConsole(boolean show) {
-		console.setVisible(show);
+		console.setFocus(show);
 		if (show) {
 			addInputLock("console");
 		} else {
@@ -141,11 +141,11 @@ abstract class Base extends Game {
 	}
 	
 	public boolean isConsoleShowing() {
-		return console.isVisible();
+		return console.isFocus();
 	}
 	
-	public void setCommand(CommandExecutor gameCmds) {
-		console.setCommandExecutor(gameCmds);
+	public void setCommand(Commands commands) {
+		console.setCommands(commands);
 	}
 
 	@Override

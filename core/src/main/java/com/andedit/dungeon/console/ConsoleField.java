@@ -2,6 +2,10 @@ package com.andedit.dungeon.console;
 
 import static com.andedit.dungeon.Main.main;
 
+import com.andedit.console.CmdContext;
+import com.andedit.console.command.Command;
+import com.andedit.console.log.LogEntry;
+import com.andedit.console.log.LogStatus;
 import com.andedit.dungeon.Assets;
 import com.andedit.dungeon.Main;
 import com.andedit.dungeon.util.Cycle;
@@ -19,18 +23,17 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Queue;
-import com.strongjoshua.console.LogLevel;
 
 public class ConsoleField extends TextField {	
 	public boolean isFocus;
 	
-	private final AndConsole console;
+	private final Console console;
 	private final CommandCompleter completer;
-	private final Queue<LogEntry> list = new Queue<>();
+	private final Queue<ChatEntry> list = new Queue<>();
 	
 	private Cycle<String> cycle;
 	
-	ConsoleField(AndConsole console, Skin skin) {
+	ConsoleField(Console console, Skin skin) {
 		super(null, skin);
 		this.console = console;
 		completer = new CommandCompleter(console);
@@ -42,7 +45,7 @@ public class ConsoleField extends TextField {
 	
 	@Override
 	public void act(float delta) {
-		for (LogEntry entry : list) {
+		for (ChatEntry entry : list) {
 			entry.update(delta);
 			if (entry.isOut()) {
 				list.removeValue(entry, true);
@@ -50,10 +53,9 @@ public class ConsoleField extends TextField {
 		}
 	}
 	
-	public void log(String msg, LogLevel level) {
-		String[] lines = msg.split("\n");
-		for (String line : lines) {
-			list.addFirst(new LogEntry("> " + line, level));
+	public void log(CmdContext context) {
+		for (LogEntry entry : context) {
+			list.addFirst(new ChatEntry(entry));
 		}
 	}
 	
@@ -80,27 +82,32 @@ public class ConsoleField extends TextField {
 			return;
 		}
 		parentAlpha = 1;
-		float offset = isFocus ? getHeight() : 0;
+		offset = isFocus ? getHeight() : 0;
 		BitmapFont font = getStyle().font;
 		if (isFocus) {
 			super.draw(batch, parentAlpha);
+			for (Command cmd : completer.list) {
+				drawLine(batch, Console.getRequire(cmd), 0.5f);
+			}
 			for (String cmd : completer) {
-				batch.setColor(0, 0, 0, 0.5f);
-				batch.draw(Assets.BLANK, getX(), getY() - offset, getWidth(), 12f);
-				font.draw(batch, cmd + (getText().equalsIgnoreCase(cmd) ? " <" : ""), getX(), getY() - offset + 10f);
-				offset += 12f;
+				drawLine(batch, cmd + (getText().equalsIgnoreCase(cmd) ? " <" : ""), 0.5f);
 			}
 		} else {
-			for (LogEntry entry : list) {
+			for (ChatEntry entry : list) {
 				font.setColor(entry.getColor());
-				batch.setColor(0, 0, 0, entry.getTrans() * 0.5f);
-				batch.draw(Assets.BLANK, getX(), getY() - offset, getWidth(), 12f);
-				font.draw(batch, entry.log, getX(), getY() - offset + 10f);
-				offset += 12f;
+				drawLine(batch, entry.toString(), entry.getTrans() * 0.5f);
 			}
 		}
 		batch.setColor(Color.WHITE);
 		font.setColor(Color.WHITE);
+	}
+	
+	protected float offset;
+	protected void drawLine(Batch batch, String text, float trans) {
+		batch.setColor(0, 0, 0, trans);
+		batch.draw(Assets.BLANK, getX(), getY() - offset, getWidth(), 12f);
+		getStyle().font.draw(batch, text.toString(), getX(), getY() - offset + 10f);
+		offset += 12f;
 	}
 	
 	@Override
@@ -126,7 +133,7 @@ public class ConsoleField extends TextField {
 	
 	private void keyTyped(TextField field, char key) {
 		if (key == '\n') {
-			console.execCommand(getText());
+			console.execute(getText());
 			main.showConsole(false);
 			return;
 		}

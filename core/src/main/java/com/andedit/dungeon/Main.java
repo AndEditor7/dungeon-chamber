@@ -1,6 +1,5 @@
 package com.andedit.dungeon;
 
-import com.andedit.dungeon.console.command.GameCmds;
 import com.andedit.dungeon.graphic.FBO;
 import com.andedit.dungeon.graphic.QuadIndexBuffer;
 import com.andedit.dungeon.graphic.StageUI;
@@ -10,11 +9,8 @@ import com.andedit.dungeon.util.AssetManager;
 import com.andedit.dungeon.util.Util;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.glutils.GLVersion;
-import com.strongjoshua.console.CommandExecutor;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends Base {
